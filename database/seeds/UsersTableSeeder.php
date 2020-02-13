@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
         // Administrador #2.
         $admin2 = new User();
         $admin2->name = "Alejandro Gómez";
-        $admin2->email = "luis.gomezc@autonoma.edu.co";
+        $admin2->email = "alejandrogomez2339@gmail.com";
         $admin2->password = bcrypt('alejo');
         $admin2->assignRole('administrador');
 

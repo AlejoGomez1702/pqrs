@@ -12,6 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // Administrador #1.
         $admin = new User();
         $admin->name = "administrador";
         $admin->email = "admin@mail.com";
@@ -19,5 +20,16 @@ class UsersTableSeeder extends Seeder
         $admin->assignRole('administrador');
 
         $admin->save();
+
+        // Administrador #2.
+        $admin2 = new User();
+        $admin2->name = "Alejandro Gómez";
+        $admin2->email = "luis.gomezc@autonoma.edu.co";
+        $admin2->password = bcrypt('alejo');
+        $admin2->assignRole('administrador');
+
+        $admin2->save();
+
+
     }
 }

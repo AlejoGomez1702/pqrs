@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Rutas para el CRUD de funcionarios.
+Route::resource('officials', 'OfficialController');
+

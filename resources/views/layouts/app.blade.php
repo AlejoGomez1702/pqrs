@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @stack('styles') {{--Hueco para agregar estilos en las sub-vistas--}}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>PQRS - Aguadas</title>
+    <title>PQRS - @yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -89,7 +91,7 @@
                     <li class="nav-item mr-5">
                         <div class="dropdown show">                        
                             <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->names }}
                             </a>
                         
                             <div class="dropdown-menu" aria-labelledby="dropdownUser">
@@ -115,11 +117,11 @@
             </nav>
             <!-- /.navbar -->
 
-            <!--Aside de opciones-->
+            <!--Aside de opciones para el administrador-->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!--Logo superior-->
                 <a href="/" class="brand-link">
-                    <img src="img/AdminLTELogo.png" alt="" class="brand-image img-circle elevation-3"
+                    <img src="{{ asset('img/AdminLTELogo.png') }}" alt="" class="brand-image img-circle elevation-3"
                         style="opacity: .8">
                     <span class="brand-text font-weight-light">PQRS</span>
                 </a>
@@ -129,16 +131,17 @@
                     <!--Foto y nombre de usuario logueado-->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="img/avatar2.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('img/avatar2.png') }}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                            <a href="#" class="d-block">{{ Auth::user()->names }}</a>
                         </div>
                     </div>
 
                     <!--Opciones del aside-->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            {{-- Boton para el panel de inicio --}}
                             <li class="nav-item has-treeview menu-open">
                                 <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-home"></i>
@@ -147,6 +150,32 @@
                                 </p>
                                 </a>
                             </li>
+
+                            {{-- Boton para CRUD de "Funcionarios" --}}
+                            <li class="nav-item has-treeview menu-open">
+                                <a href="#" class="nav-link active">
+                                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                                  <p>
+                                    Funcionarios
+                                    <i class="right fas fa-angle-left"></i>
+                                  </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                  <li class="nav-item">
+                                    <a href="/officials" class="nav-link">
+                                      <i class="fa fa-eye nav-icon"></i>
+                                      <p>Ver Todos</p>
+                                    </a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a href="/officials/create" class="nav-link active">
+                                      <i class="fas fa-plus nav-icon"></i>
+                                      <p>Crear</p>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+
                         </ul>
                     </nav>
 
@@ -186,17 +215,17 @@
             </nav>
         @endguest
         
-        <main class="py-4">
+        <main class="content-wrapper">
             @yield('content')
         </main>
     </div>
 
     @auth
         <!-- JQuery -->
-        <script src="js/adminlte/jquery.min.js"></script>
+        <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script>
 
         <!-- AdminLTE -->
-        <script src="js/adminlte/adminlte.min.js"></script>
+        <script src="{{ asset('js/adminlte/adminlte.min.js') }}"></script>
 
         <!-- OverLayScrollbars -->
         {{-- <script src="js/adminlte/jquery.overlayScrollbars.min.js"></script> --}}

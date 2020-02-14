@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class OfficialController extends Controller
 {
@@ -13,7 +14,9 @@ class OfficialController extends Controller
      */
     public function index()
     {
-        //
+        $officials = User::role('official')->get();
+        return view('admin.officials.index')
+                    ->with('officials', $officials);
     }
 
     /**
@@ -23,7 +26,7 @@ class OfficialController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.officials.create');
     }
 
     /**

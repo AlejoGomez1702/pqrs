@@ -14,12 +14,12 @@ class RolesTableSeeder extends Seeder
     {
         // Administrador.
         $admin_role = new Role();
-        $admin_role->name = "administrador";  
+        $admin_role->name = "administrator";  
         $admin_role->save();
 
         // Funcionario.
         $official_role = new Role();
-        $official_role->name = "funcionario";
+        $official_role->name = "official";
         $official_role->save();
     }
 }

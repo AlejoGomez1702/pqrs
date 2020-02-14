@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PQRS - Aguadas'),
+    'name' => env('APP_NAME', 'PQRS-Alcaldía-Aguadas'),
 
     /*
     |--------------------------------------------------------------------------

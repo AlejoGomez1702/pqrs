@@ -18,8 +18,8 @@ class RolesTableSeeder extends Seeder
         $admin_role->save();
 
         // Funcionario.
-        $servant_role = new Role();
-        $servant_role->name = "funcionario";
-        $servant_role->save();
+        $official_role = new Role();
+        $official_role->name = "funcionario";
+        $official_role->save();
     }
 }

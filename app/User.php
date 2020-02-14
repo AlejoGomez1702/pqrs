@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+// use App\Notifications\CustomResetPasswordNotifications;
 
 class User extends Authenticatable
 {
@@ -38,4 +39,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Permite editar la notificación de reseteo de contraseña de un usuario.
+     */
+    public function sendPasswordResetNotification($token)
+    {
+    $this->notify(new Notifications\CustomResetPasswordNotification($token));
+    }
 }

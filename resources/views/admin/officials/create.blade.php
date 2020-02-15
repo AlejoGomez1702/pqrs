@@ -19,14 +19,14 @@
                 <div class="card-body">
                     @if ($type == 'create')
                         {{-- Formulario para el ingreso de los datos --}}
-                        {!! Form::open(['url' => 'officials']) !!}
+                        {!! Form::open(['url' => 'officials', 'files' => true]) !!}
                     @endif                    
                     @csrf
                         {{-- Cédula --}}
                         <div class="input-container">
                             <i class="far fa-id-card icon"></i>
-                            {!! Form::text('text',null, ['class' => 'input-field', 
-                                        'placeholder' => 'Número de Cédula', 'name' => 'identification_card']) !!}   
+                            {!! Form::text('text',null, ['class' => 'input-field', 'placeholder' => 'Número de Cédula', 
+                                'name' => 'identification_card']) !!}   
                         </div>
 
                         {{-- Nombres --}}
@@ -62,6 +62,19 @@
                             <i class="fa fa-key icon"></i>
                             {!! Form::password('password_confirmation', ['class' => 'input-field',
                                         'placeholder' => 'Confirmar Contraseña']); !!}                            
+                        </div>
+
+                        {{-- Foto del funcionario --}}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupFileAddon01">Subir Foto</span>
+                            </div>
+                            <div class="custom-file">
+                                {!! Form::file('photo', ['class' => 'custom-file-input', 'id' => 'inputGroupFile01', 
+                                                'aria-describedby' => "inputGroupFileAddon01", 'accept' => "image/*"]) !!}                        
+                              {{-- <input type="file" name="photo" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"> --}}
+                              <label class="custom-file-label" for="inputGroupFile01">Seleccionar...</label>
+                            </div>
                         </div>
 
                         {{-- Botones del formulario --}}

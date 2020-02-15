@@ -44,10 +44,11 @@ class OfficialController extends Controller
      */
     public function store(StoreOfficial $request)
     {
-        $info = $request->all();
+        $info = $request->except('photo');
         $info['password'] = bcrypt($request->password);
         $official = User::create($info);
         $official->assignRole('official');
+        $official->addMedia($request->photo)->toMediaCollection();
 
         return redirect()->route('officials.index');
     }
@@ -60,7 +61,11 @@ class OfficialController extends Controller
      */
     public function show($id)
     {
-        //
+        $photos = User::find(10)->getMedia();
+        //$photos = Auth()->user()->getMedia();
+
+        return view('admin.officials.show')
+                    ->with('photos', $photos);
     }
 
     /**

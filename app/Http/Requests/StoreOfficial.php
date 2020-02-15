@@ -28,7 +28,8 @@ class StoreOfficial extends FormRequest
             'names' => 'required|min:4|max:120',
             'surnames' => 'required|min:4|max:120',
             'email' => 'email|required|unique:users',
-            'password' => 'required|min:6|confirmed' 
+            'password' => 'required|min:6|confirmed',
+            'photo' => 'required'
         ];
     }
 }

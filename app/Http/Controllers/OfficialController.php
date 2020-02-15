@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOfficial;
 use Illuminate\Http\Request;
 use App\User;
 
 class OfficialController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,8 @@ class OfficialController extends Controller
      */
     public function create()
     {
-        return view('admin.officials.create');
+        return view('admin.officials.create')
+                    ->with('type', 'create');
     }
 
     /**
@@ -35,9 +42,14 @@ class OfficialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOfficial $request)
     {
-        //
+        $info = $request->all();
+        $info['password'] = bcrypt($request->password);
+        $official = User::create($info);
+        $official->assignRole('official');
+
+        return redirect()->route('officials.index');
     }
 
     /**

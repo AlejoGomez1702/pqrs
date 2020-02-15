@@ -17,104 +17,69 @@
 
                 <!-- Card body -->
                 <div class="card-body">
-                    <form action="" >
-                        <!-- Foto -->
-                        {{-- <div class="row">
-                            <div class="col-md-5 mx-auto">
-                                <div class="card shadow border" >
-                                    <div class="card-header p-0" style="max-height: 13rem !important;">
-                                        <img [hidden]="edit1" [src]="photoSelected  || '/assets/img/no-image-icon.png'"  alt="" class="card-img-top" style="max-height: 13rem !important;">
+                    @if ($type == 'create')
+                        {{-- Formulario para el ingreso de los datos --}}
+                        {!! Form::open(['url' => 'officials']) !!}
+                    @endif                    
+                    @csrf
+                        {{-- Cédula --}}
+                        <div class="input-container">
+                            <i class="far fa-id-card icon"></i>
+                            {!! Form::text('text',null, ['class' => 'input-field', 
+                                        'placeholder' => 'Número de Cédula', 'name' => 'identification_card']) !!}   
+                        </div>
 
-                                        <img [hidden]="!edit1" [src]="client.photo?.route ? url : '/assets/img/no-image-icon.png'"  alt="" class="card-img-top" style="max-height: 13rem !important;">
-                                    </div>
-                                    <div class="card-footer bg-info">
-                                        <div class="form-group">
-                                            <input type="file" name="uploadfile" id="imgClient" (change)="ponerFoto($event)" accept="image/*" style="display:none;"/>
-                                            <div class="upload-image mr-auto">
-                                                <label for="imgClient"><i class="fa fa-upload"></i>Subir Foto...</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- Cédula de ciudadania -->
-                        <div class="form-group mb-0">
-                            <div class="wrap-input100">
-                                <input type="text" name="dni" required class="input100">
-                                <span class="focus-input100" data-placeholder="Cédula de ciudadania"></span>
-                            </div>
+                        {{-- Nombres --}}
+                        <div class="input-container">
+                            <i class="fas fa-signature icon"></i>
+                            {!! Form::text('text',null, ['class' => 'input-field', 
+                                        'placeholder' => 'Nombres', 'name' => 'names']) !!}
                         </div>
-                        {{-- <div class="alert alert-danger" [hidden]="!error.dni">
-                            {{ error.dni }}
-                        </div> --}}
-                        <br>
-                        <!-- Nombres -->
-                        <div class="form-group">
-                            <div class="wrap-input100">
-                                <input type="text" name="name"  required class="input100">
-                                <span class="focus-input100" data-placeholder="Nombres"></span>
-                            </div>
-                        </div>
-                        {{-- <div class="alert alert-danger" [hidden]="!error.name">
-                            {{ error.name }}
-                        </div> --}}
-                        <br>
-                        <!-- Apellidos -->
-                        <div class="form-group">
-                            <div class="wrap-input100">
-                                <input type="text" name="lastname"  required class="input100">
-                                <span class="focus-input100" data-placeholder="Apellidos"></span>
-                            </div>
-                        </div>
-                        {{-- <div class="alert alert-danger" [hidden]="!error.lastname">
-                            {{ error.lastname }}
-                        </div> --}}
-                        <br>
 
-                        {{-- Correo electrónico --}}
-                        <div class="form-group">
-                            <div class="wrap-input100">
-                                <input type="email" name="email" required class="input100">
-                                <span class="focus-input100" data-placeholder="Correo Electrónico"></span>
-                            </div>
+                        {{-- Apellidos --}}
+                        <div class="input-container">
+                            <i class="fas fa-signature icon"></i>
+                            {!! Form::text('text',null, ['class' => 'input-field', 
+                                        'placeholder' => 'Apellidos', 'name' => 'surnames']) !!}                            
+                        </div>
+
+                        {{-- Correo Electrónico --}}
+                        <div class="input-container">
+                            <i class="fas fa-envelope-open-text icon"></i>
+                            {!! Form::email('email',null, ['class' => 'input-field', 
+                                        'placeholder' => 'Correo Electrónico', 'name' => 'email']) !!}
                         </div>
 
                         {{-- Contraseña --}}
-                        <div class="form-group">
-                            <div class="wrap-input100">
-                                <input type="password" name="password" required class="input100">
-                                <span class="focus-input100" data-placeholder="Contraseña"></span>
-                            </div>
+                        <div class="input-container">
+                            <i class="fa fa-key icon"></i>
+                            {!! Form::password('password', ['class' => 'input-field',
+                                        'placeholder' => 'Contraseña']); !!}                            
                         </div>
 
-                        {{-- Repetir contraseña --}}
-                        <div class="form-group">
-                            <div class="wrap-input100">
-                                <i class="far fa-eye-slash"></i>
-                                <input type="password" name="password2" required class="input100">                                
-                                <span class="focus-input100" data-placeholder="Confirmar Contraseña"></span>                                
-                            </div>
+                        {{-- Confirmar Contraseña --}}
+                        <div class="input-container">
+                            <i class="fa fa-key icon"></i>
+                            {!! Form::password('password_confirmation', ['class' => 'input-field',
+                                        'placeholder' => 'Confirmar Contraseña']); !!}                            
                         </div>
 
-                                            
-                        <!-- Botones del formulario -->
+                        {{-- Botones del formulario --}}
                         <div class="row mt-4">
-                            <div class="col">
-                                <a class="btn btn-primary" >
+                            <div class="col">                                
+                                <a class="btn btn-light" >
                                     <i class="fa fa-chevron-left mr-md-3" aria-hidden="true"></i> 
                                     ATRAS
                                 </a>
                             </div>
                             <div class="col" >
-                                <button class="btn btn-success float-right" type="submit">
-                                        AGREGAR                                    
-                                    <i class="fa fa-plus ml-md-3" aria-hidden="true"></i>
-                                </button>
+                                {!! Form::button('AGREGAR <i class="fa fa-plus ml-md-3" aria-hidden="true"></i>',
+                                    ['type' => 'submit', 'class' => 'btn btn-primary float-right']) !!}
                             </div>
                         </div>
 
-                    </form>
+                    {!! Form::close() !!}
+                    
                 </div>
 
             </div>

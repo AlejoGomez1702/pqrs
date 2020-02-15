@@ -213,11 +213,17 @@
                     </div>
                 </div>
             </nav>
+            <main class="container mt-4">
+                @yield('content')
+            </main>
         @endguest
         
-        <main class="content-wrapper">
-            @yield('content')
-        </main>
+        @auth
+            <main class="content-wrapper">
+                @yield('content')
+            </main>
+        @endauth
+        
     </div>
 
     @auth

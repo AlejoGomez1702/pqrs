@@ -120,7 +120,7 @@
             <!--Aside de opciones para el administrador-->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!--Logo superior-->
-                <a href="/" class="brand-link">
+                <a href="/" class="brand-link">                
                     <img src="{{ asset('img/AdminLTELogo.png') }}" alt="" class="brand-image img-circle elevation-3"
                         style="opacity: .8">
                     <span class="brand-text font-weight-light">PQRS</span>
@@ -131,7 +131,12 @@
                     <!--Foto y nombre de usuario logueado-->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{ asset('img/avatar2.png') }}" class="img-circle elevation-2" alt="User Image">
+                            @if (count(Auth::user()->getMedia()) > 0)
+                                <img src="{{ Auth::user()->getMedia()[0]->getUrl() }}" class="img-circle elevation-2" alt="User Image">
+                            @else
+                                <img src="/storage/default-user.png" class="img-circle elevation-2" alt="User Image">
+                            @endif
+                            {{-- <img src="{{ asset('img/avatar2.png') }}" class="img-circle elevation-2" alt="User Image"> --}}
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">{{ Auth::user()->names }}</a>
@@ -232,6 +237,9 @@
 
         <!-- AdminLTE -->
         <script src="{{ asset('js/adminlte/adminlte.min.js') }}"></script>
+
+        {{-- Bootbox -- Utilizado para los dialogos modales --}}
+        <script src="{{ asset('js/bootbox.all.min.js') }}"></script>
 
         <!-- OverLayScrollbars -->
         {{-- <script src="js/adminlte/jquery.overlayScrollbars.min.js"></script> --}}

@@ -63,7 +63,7 @@
                     {{-- Botones del formulario --}}
                     <div class="row mt-4">
                         <div class="col">                                
-                            <a class="btn btn-light" >
+                            <a class="btn btn-light" href="/officials">
                                 <i class="fa fa-chevron-left mr-md-3" aria-hidden="true"></i> 
                                 ATRAS
                             </a>

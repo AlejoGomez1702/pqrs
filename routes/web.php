@@ -19,6 +19,10 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Ruta para cambiar la contraseña de un usuario.
+Route::get('/changePassword', 'HomeController@showChangePasswordForm');
+Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
+
 // Rutas para el CRUD de funcionarios.
 Route::resource('officials', 'OfficialController');
 

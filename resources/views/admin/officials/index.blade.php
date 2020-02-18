@@ -28,9 +28,9 @@
                         <td> {{ $official->surnames }} </td>
                         <td> {{ $official->email }} </td>
                         <td>
-                            <a class="btn"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a class="btn" href="officials/{{ $official->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a class="btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <button class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="submit" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </td>
                     </tr>                    
                 @endforeach

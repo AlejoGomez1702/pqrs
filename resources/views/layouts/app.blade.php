@@ -96,7 +96,7 @@
                         
                             <div class="dropdown-menu" aria-labelledby="dropdownUser">
                                 <a class="dropdown-item" href="#"><i class="fas fa-user"></i>Mis Datos</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-lock"></i>Cambiar Contraseña</a>
+                                <a class="dropdown-item" href="/changePassword"><i class="fas fa-lock"></i>Cambiar Contraseña</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                                         document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt"></i>
@@ -143,7 +143,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             {{-- Boton para el panel de inicio --}}
                             <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
+                                <a href="/home" class="nav-link active">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Inicio

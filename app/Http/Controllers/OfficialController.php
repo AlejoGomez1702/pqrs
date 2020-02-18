@@ -54,18 +54,17 @@ class OfficialController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified official.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $photos = User::find(10)->getMedia();
-        //$photos = Auth()->user()->getMedia();
+        $official = User::role('official')->findOrFail($id);
 
         return view('admin.officials.show')
-                    ->with('photos', $photos);
+                    ->with('official', $official);
     }
 
     /**
@@ -76,7 +75,9 @@ class OfficialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $official = User::role('official')->findOrFail($id);
+        return view('admin.officials.edit')
+                    ->with('official', $official);
     }
 
     /**
@@ -88,7 +89,15 @@ class OfficialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $official = User::role('official')->findOrFail($id);
+        if($request->photo)
+        {
+            $official->addMedia($request->photo)->toMediaCollection();
+        }
+
+        $official->update($request->except('photo'));
+
+        return redirect()->route('officials.show', [$official]);
     }
 
     /**
@@ -99,6 +108,9 @@ class OfficialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $official = User::role('official')->findOrFail($id);
+        $official->delete();
+
+        return redirect()->route('officials.index');
     }
 }

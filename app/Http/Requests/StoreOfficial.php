@@ -25,8 +25,8 @@ class StoreOfficial extends FormRequest
     {
         return [
             'identification_card' => 'required|unique:users|min:5|max:15',
-            'names' => 'required|min:4|max:120',
-            'surnames' => 'required|min:4|max:120',
+            'names' => 'required|string|min:4|max:120',
+            'surnames' => 'required|string|min:4|max:120',
             'email' => 'email|required|unique:users',
             'password' => 'required|min:6|confirmed',
             'photo' => 'required'

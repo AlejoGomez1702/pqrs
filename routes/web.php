@@ -26,3 +26,9 @@ Route::post('/changePassword','HomeController@changePassword')->name('changePass
 // Rutas para el CRUD de funcionarios.
 Route::resource('officials', 'OfficialController');
 
+// Rutas para el CRUD de Dependencias.
+Route::resource('dependences', 'DependenceController');
+
+// Rutas para el CRUD de solicitantes.
+Route::resource('applicants', 'ApplicantController');
+

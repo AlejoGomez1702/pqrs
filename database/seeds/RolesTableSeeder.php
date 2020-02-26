@@ -21,5 +21,11 @@ class RolesTableSeeder extends Seeder
         $official_role = new Role();
         $official_role->name = "official";
         $official_role->save();
+
+        // Solicitantes.
+        $applicant_role = new Role();
+        $applicant_role->name = "applicant";
+        $applicant_role->save();
+
     }
 }

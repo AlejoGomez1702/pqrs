@@ -1,36 +1,29 @@
+@extends('layouts.app')
+
 {{-- Estilos para los iconos del listado --}}
 @push('styles')
     <link href="{{ asset('css/models/list-styles.css') }}" rel="stylesheet" >    
 @endpush
 
-@extends('layouts.app')
-
 @section('content')
-
 <div class="row mx-md-5">        
     <div class="col-md-12">
-        <h1 class="text-dark text-center my-3">Listado De Funcionarios</h1>
+        <h1 class="text-dark text-center my-3">Listado De Dependecias</h1>
         <table class="table border">
             <thead class="thead-dark text-center">
-                <th scope="col">Cédula</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Correo Electrónico</th>
+                <th scope="col">Nombre</th>
                 <th> Acciones </th>
             </thead>
             <tbody>
 
                 {{-- Recorriendo los funcionarios obtenidos --}}
-                @foreach ($officials as $official)
+                @foreach ($dependences as $dependence)
                     <tr class="text-center" >
-                        <td> {{ $official->identification_card }} </td>
-                        <td> {{ $official->names }} </td>
-                        <td> {{ $official->surnames }} </td>
-                        <td> {{ $official->email }} </td>
+                        <td> {{ $dependence->name }} </td>
                         <td>
-                            <form action="{{ route('officials.destroy', $official->id) }}" method="post">
-                            <a class="btn" href="officials/{{ $official->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a class="btn" href="officials/{{ $official->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <form action="{{ route('dependences.destroy', $dependence->id) }}" method="post">
+                            <a class="btn" href="dependences/{{ $dependence->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a class="btn" href="dependences/{{ $dependence->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 {{-- Boton de eliminar --}}                            
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -43,5 +36,6 @@
         </table>
     </div>        
 </div>
-    
+
+
 @endsection

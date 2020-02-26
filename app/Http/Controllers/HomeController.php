@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\user;
+use App\Dependence;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,14 @@ class HomeController extends Controller
     public function index()
     {
         $cant_officials = User::role('official')->count();
+        $cant_dependences = Dependence::all()->count();
+        $cant_applicants = User::role('applicant')->count();
 
-        return view('home', ['cant_officials' => $cant_officials]);
+        return view('home', [
+            'cant_officials' => $cant_officials,
+            'cant_dependences' => $cant_dependences,
+            'cant_applicants' => $cant_applicants
+        ]);
     }
 
     // /**

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOfficial;
 use Illuminate\Http\Request;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class OfficialController extends Controller
 {
@@ -49,6 +51,12 @@ class OfficialController extends Controller
         $official = User::create($info);
         $official->assignRole('official');
         $official->addMedia($request->photo)->toMediaCollection();
+
+        if($official)
+        {
+            Alert::success('Funcionario Creado Correctamente!', 
+                                $official->names . " " . $official->surnames);
+        }
 
         return redirect()->route('officials.index');
     }
@@ -95,8 +103,18 @@ class OfficialController extends Controller
             $official->addMedia($request->photo)->toMediaCollection();
         }
 
-        $official->update($request->except('photo'));
-
+        $check = $official->update($request->except('photo'));
+        if($check)
+        {
+            Alert::success('Funcionario Actualizado Correctamente!', 
+                                $official->names . " " . $official->surnames);
+        }
+        else
+        {
+            Alert::warning('No Fue Posible Actualizar El Funcionario',
+                                $official->name);
+        }
+        
         return redirect()->route('officials.show', [$official]);
     }
 
@@ -109,7 +127,12 @@ class OfficialController extends Controller
     public function destroy($id)
     {
         $official = User::role('official')->findOrFail($id);
-        $official->delete();
+        $check = $official->delete();
+        if($check)
+        {
+            Alert::error('Funcionario Eliminado Correctamente!', 
+                            $official->names . " " . $official->surnames);
+        }
 
         return redirect()->route('officials.index');
     }

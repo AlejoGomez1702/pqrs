@@ -52,5 +52,24 @@ class UsersTableSeeder extends Seeder
         $official2->assignRole('official');
         $official2->save();
 
+        // Solicitante #1.
+        $applicant = new User();
+        $applicant->identification_card = "183570235";
+        $applicant->names = "Casa";
+        $applicant->surnames = "cultura";
+        $applicant->email = "applicant@mail.com";
+        $applicant->assignRole('applicant');
+        $applicant->save();
+
+        // Solicitante #2.
+        $applicant2 = new User();
+        $applicant2->identification_card = "183570230";
+        $applicant2->names = "Casitaa";
+        $applicant2->surnames = "curall";
+        $applicant2->email = "applicant2@mail.com";
+        $applicant2->assignRole('applicant');
+        $applicant2->save();
+
+
     }
 }

@@ -143,46 +143,9 @@
                         </div>
                     </div>
 
-                    <!--Opciones del aside-->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            {{-- Boton para el panel de inicio --}}
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="/home" class="nav-link active">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>
-                                    Inicio
-                                </p>
-                                </a>
-                            </li>
+                    
 
-                            {{-- Boton para CRUD de "Funcionarios" --}}
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
-                                  <i class="nav-icon fas fa-users"></i>
-                                  <p>
-                                    Funcionarios
-                                    <i class="right fas fa-angle-left"></i>
-                                  </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                  <li class="nav-item">
-                                    <a href="/officials" class="nav-link">
-                                      <i class="fa fa-eye nav-icon"></i>
-                                      <p>Ver Todos</p>
-                                    </a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a href="/officials/create" class="nav-link active">
-                                      <i class="fas fa-plus nav-icon"></i>
-                                      <p>Crear</p>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-
-                        </ul>
-                    </nav>
+                    @include('layouts.admin.options')
 
                 </div>
 
@@ -238,8 +201,14 @@
         <!-- AdminLTE -->
         <script src="{{ asset('js/adminlte/adminlte.min.js') }}"></script>
 
+        {{-- Dashboard2 AdminLTE 3.0 --}}
+        {{-- <script src="{{ asset('js/adminlte/dashboard2.js') }}"></script> --}}
+
         {{-- Bootbox -- Utilizado para los dialogos modales --}}
-        <script src="{{ asset('js/bootbox.all.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/bootbox.all.min.js') }}"></script> --}}
+
+        {{-- Sweet Alert --}}
+        @include('sweetalert::alert')
 
         <!-- OverLayScrollbars -->
         {{-- <script src="js/adminlte/jquery.overlayScrollbars.min.js"></script> --}}

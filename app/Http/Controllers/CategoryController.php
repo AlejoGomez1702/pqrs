@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Category;
 
@@ -27,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -38,7 +39,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all());
+        if($category)
+            Alert::success('Categoría Creada Correctamente!', $category->name); 
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -60,7 +65,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit')
+                    ->with('category', $category);    
     }
 
     /**
@@ -72,7 +80,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $check = $category->update($request->all());
+        if($check)
+            Alert::success('Categoría Actualizada Correctamente!', $category->name);
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -83,6 +96,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $check = $category->delete();
+        if($check)
+            Alert::error('Categoría Eliminada Correctamente!', $category->name);
+
+        return redirect()->route('categories.index');
     }
 }

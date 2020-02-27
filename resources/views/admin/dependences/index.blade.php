@@ -12,6 +12,7 @@
         <table class="table border">
             <thead class="thead-dark text-center">
                 <th scope="col">Nombre</th>
+                <th>Correo Electrónico</th>
                 <th> Acciones </th>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                 @foreach ($dependences as $dependence)
                     <tr class="text-center" >
                         <td> {{ $dependence->name }} </td>
+                        <td> {{ $dependence->email }} </td>
                         <td>
                             <form action="{{ route('dependences.destroy', $dependence->id) }}" method="post">
                             <a class="btn" href="dependences/{{ $dependence->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>

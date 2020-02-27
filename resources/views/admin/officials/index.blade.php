@@ -16,6 +16,7 @@
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Correo Electrónico</th>
+                <th scope="col">Dependencia</th>
                 <th> Acciones </th>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                         <td> {{ $official->names }} </td>
                         <td> {{ $official->surnames }} </td>
                         <td> {{ $official->email }} </td>
+                        <td> {{ $official->dependence->name }} </td>
                         <td>
                             <form action="{{ route('officials.destroy', $official->id) }}" method="post">
                             <a class="btn" href="officials/{{ $official->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>

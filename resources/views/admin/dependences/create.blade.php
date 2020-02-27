@@ -26,6 +26,13 @@
                             {!! Form::text('text',null, ['class' => 'input-field', 'placeholder' => 'Nombre', 
                                 'name' => 'name']) !!}   
                         </div>
+
+                        {{-- Correo Electrónico --}}
+                        <div class="input-container">
+                            <i class="fas fa-envelope-open-text icon"></i>
+                            {!! Form::email('email',null, ['class' => 'input-field', 
+                                        'placeholder' => 'Correo Electrónico', 'name' => 'email']) !!}
+                        </div>
                         
                         {{-- Botones del formulario --}}
                         <div class="row mt-4">

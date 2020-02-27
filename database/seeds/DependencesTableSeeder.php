@@ -14,10 +14,12 @@ class DependencesTableSeeder extends Seeder
     {
         $dependece = new Dependence();
         $dependece->name = "Administrativos";
+        $dependece->email = "ajkbfk@jskdgfn.com";
         $dependece->save();
 
         $dependece2 = new Dependence();
         $dependece2->name = "Secretaría de educación";
+        $dependece2->email = "lkshgi@jknhñ.com";
         $dependece2->save();
 
     }

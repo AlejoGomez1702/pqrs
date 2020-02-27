@@ -53,6 +53,14 @@ class User extends Authenticatable implements HasMedia
      */
     public function sendPasswordResetNotification($token)
     {
-    $this->notify(new Notifications\CustomResetPasswordNotification($token));
+        $this->notify(new Notifications\CustomResetPasswordNotification($token));
+    }
+
+    /**
+     * Relación con dependencia.
+     */
+    public function dependence()
+    {
+        return $this->belongsTo(Dependence::class);
     }
 }

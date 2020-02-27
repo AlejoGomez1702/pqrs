@@ -111,11 +111,9 @@ class DependenceController extends Controller
         $dependence = Dependence::findOrFail($id);
         $check = $dependence->delete();
 
-        if($check)
-        {
-            Alert::error('Dependencia Eliminado Correctamente!', 
-                            $dependence->name);
-        }
+        if($check)        
+            Alert::error('Dependencia Eliminado Correctamente!', $dependence->name);
+        
 
         return redirect()->route('dependences.index');
     }

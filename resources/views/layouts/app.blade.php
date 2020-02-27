@@ -142,9 +142,8 @@
                             <a href="#" class="d-block">{{ Auth::user()->names }}</a>
                         </div>
                     </div>
-
                     
-
+                    {{-- Contiene todos los menus de la izquierda --}}
                     @include('layouts.admin.options')
 
                 </div>

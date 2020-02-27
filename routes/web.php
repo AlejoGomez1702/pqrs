@@ -32,3 +32,6 @@ Route::resource('dependences', 'DependenceController');
 // Rutas para el CRUD de solicitantes.
 Route::resource('applicants', 'ApplicantController');
 
+// Rutas para el CRUD de categorías.
+Route::resource('categories', 'CategoryController');
+

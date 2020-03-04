@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
-use App\User;
 
-class ApplicantController extends Controller
+class RequestController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +13,7 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        $applicants = User::role('applicant')->get();
-
-        return view('admin.applicants.index')
-                    ->with('applicants', $applicants);
+        //
     }
 
     /**
@@ -33,7 +23,7 @@ class ApplicantController extends Controller
      */
     public function create()
     {
-        return view('admin.applicants.create');
+        //
     }
 
     /**
@@ -44,15 +34,7 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {
-        $applicant = User::create($request->all());
-        $applicant->assignRole('applicant');
-
-        if($applicant)        
-            Alert::success('Funcionario Creado Correctamente!', 
-                                $applicant->names . " " . $applicant->surnames);
-        
-
-        return redirect()->route('applicants.index');
+        //
     }
 
     /**

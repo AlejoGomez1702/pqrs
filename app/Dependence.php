@@ -14,4 +14,13 @@ class Dependence extends Model
     protected $fillable = [
         'name', 'email'
     ];
+
+    /**
+     * Una dependencia tiene muchas peticiones.
+     */
+    public function requests()
+    {
+        return $this->hasMany('App\Request');
+    }
+
 }

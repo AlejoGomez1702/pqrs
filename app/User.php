@@ -61,6 +61,15 @@ class User extends Authenticatable implements HasMedia
      */
     public function dependence()
     {
-        return $this->belongsTo(Dependence::class);
+        return $this->belongsTo('App\Dependence');
     }
+
+    /**
+     * Un usuario puede tener muchas peticiones.
+     */
+    public function requests()
+    {
+        return $this->belongsToMany('App\Request');
+    }
+
 }

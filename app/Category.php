@@ -14,4 +14,14 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Una categoria tiene muchas peticiones.
+     */
+    public function requests()
+    {
+        return $this->hasMany('App\Request');
+    }
+
+
 }

@@ -20,13 +20,18 @@ class CreateRequestsTable extends Migration
             $table->timestamps();
 
             // LLaves Foraneas.
-            $table->unsignedBigInteger('category_id')
-                                ->after('id')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('dependence_id');
 
             $table->foreign('category_id')
                         ->references('id')->on('categories')
                         ->onDelete('restrict')
-                        ->onUpdate('restrict');
+                        ->onUpdate('cascade');
+
+            $table->foreign('dependence_id')
+                        ->references('id')->on('dependences')
+                        ->onDelete('restrict')
+                        ->onUpdate('cascade');
 
         });
     }

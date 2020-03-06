@@ -35,3 +35,27 @@ Route::resource('applicants', 'ApplicantController');
 // Rutas para el CRUD de categorías.
 Route::resource('categories', 'CategoryController');
 
+Route::get('pruebitas', function(){
+
+    $request = App\request::find(1);
+
+    foreach ($request->users as $user) 
+    {
+        echo $user->names . "<br>";
+    }
+
+    // $dependence = App\Dependence::find(1);
+    // $requests = $dependence->requests;
+
+    // foreach($requests as $request)
+    // {
+    //     echo $request->description . "<br>";
+    // }
+
+    // $request = App\Request::find(1);
+    // $dependence = $request->dependence->name;
+    // echo $dependence;
+
+
+});
+

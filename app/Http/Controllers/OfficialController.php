@@ -52,7 +52,7 @@ class OfficialController extends Controller
         $official->assignRole('official');
         $official->addMedia($request->photo)->toMediaCollection();
 
-        if($official)
+        if($official) 
         {
             Alert::success('Funcionario Creado Correctamente!', 
                                 $official->names . " " . $official->surnames);

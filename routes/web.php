@@ -20,8 +20,8 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Ruta para cambiar la contraseña de un usuario.
-Route::get('/changePassword', 'HomeController@showChangePasswordForm');
-Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
+//Route::get('/changePassword', 'HomeController@showChangePasswordForm');
+//Route::post('/changePassword','HomeController@changePassword')->name('changePassword');
 
 // Rutas para el CRUD de funcionarios.
 Route::resource('officials', 'OfficialController');
@@ -35,27 +35,15 @@ Route::resource('applicants', 'ApplicantController');
 // Rutas para el CRUD de categorías.
 Route::resource('categories', 'CategoryController');
 
-Route::get('pruebitas', function(){
+// Rutas para el CRUD de peticiones (PQRS).
+Route::resource('requests', 'RequestController');
 
+Route::get('pruebitas', function(){
     $request = App\request::find(1);
 
     foreach ($request->users as $user) 
     {
         echo $user->names . "<br>";
     }
-
-    // $dependence = App\Dependence::find(1);
-    // $requests = $dependence->requests;
-
-    // foreach($requests as $request)
-    // {
-    //     echo $request->description . "<br>";
-    // }
-
-    // $request = App\Request::find(1);
-    // $dependence = $request->dependence->name;
-    // echo $dependence;
-
-
 });
 

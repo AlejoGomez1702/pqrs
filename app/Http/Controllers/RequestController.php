@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Request as Petition;
 
 class RequestController extends Controller
 {
@@ -13,7 +14,11 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $petitions = Petition::all();
+        $users = $petitions[0]->category[+
+    ];
+
+        return $users;
     }
 
     /**

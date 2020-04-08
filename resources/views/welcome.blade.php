@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>PQRS</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="icon" href="{{ asset('/img/logo-alcaldia.PNG') }}">
 
         <!-- Styles -->
         <style>
@@ -45,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 120px;
             }
 
             .links > a {
@@ -83,6 +84,9 @@
                 <div class="title m-b-md">
                     Sistema PQRS
                 </div>
+
+                <h2>Alcaldía de Aguadas, Caldas</h2>
+                <img src="{{ asset('/img/logo-alcaldia.PNG') }}" alt="Logo Alcaldá">
             </div>
         </div>
     </body>

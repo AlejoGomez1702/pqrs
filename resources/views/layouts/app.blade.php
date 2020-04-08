@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>PQRS - @yield('title')</title>
+    <link rel="icon" href="{{ asset('/img/logo-alcaldia.PNG') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

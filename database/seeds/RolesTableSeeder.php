@@ -27,5 +27,20 @@ class RolesTableSeeder extends Seeder
         $applicant_role->name = "applicant";
         $applicant_role->save();
 
+        // Solicitantes (particulares).
+        $particular_role = new Role();
+        $particular_role->name = "particular_person";
+        $particular_role->save();
+
+        // Solicitantes (entidad privada).
+        $private_entity = new Role();
+        $private_entity->name = "private_entity";
+        $private_entity->save();
+
+        // Solicitantes (entidad publica).
+        $public_entity = new Role();
+        $public_entity->name = "public_entity";
+        $public_entity->save();
+
     }
 }

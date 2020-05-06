@@ -13,3 +13,10 @@
     -o-transform : scale(2); /* Opera */
     -ms-transform : scale(2); /* IE9 */
 }
+
+.size-field
+{
+    /* background-color: teal; */
+    /* padding-top: -50px; */
+    height: 8px;
+}

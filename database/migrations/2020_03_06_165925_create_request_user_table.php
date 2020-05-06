@@ -16,6 +16,8 @@ class CreateRequestUserTable extends Migration
         Schema::create('request_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            //Indica si el usuario fue el que recibio la petición.
+            $table->boolean('receiver'); 
 
             // Foraneas de request y de user.
             $table->unsignedBigInteger('request_id');

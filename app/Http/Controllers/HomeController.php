@@ -27,7 +27,8 @@ class HomeController extends Controller
     {
         $cant_officials = User::role('official')->count();
         $cant_dependences = Dependence::all()->count();
-        $cant_applicants = User::role('applicant')->count();
+        //$cant_applicants = User::role('applicant')->count();
+        $cant_applicants = 0;
 
         return view('home', [
             'cant_officials' => $cant_officials,

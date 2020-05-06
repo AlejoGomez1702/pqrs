@@ -26,6 +26,15 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/a950d22064.js" crossorigin="anonymous"></script>
 
+    {{-- <script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script> --}}
+
+    <!-- JQuery -->
+    <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script>
+
+    {{-- Chart JS --}}
+    <script src="{{ asset('js/chart-js.min.js') }}"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -195,11 +204,17 @@
     </div>
 
     @auth
+
+        @stack('custom-scripts')
+
         <!-- JQuery -->
-        <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script> --}}
 
         <!-- AdminLTE -->
         <script src="{{ asset('js/adminlte/adminlte.min.js') }}"></script>
+
+        {{-- Chart JS --}}
+        {{-- <script src="{{ asset('js/chart-js.min.js') }}"></script> --}}
 
         {{-- Dashboard2 AdminLTE 3.0 --}}
         {{-- <script src="{{ asset('js/adminlte/dashboard2.js') }}"></script> --}}
@@ -209,16 +224,15 @@
 
         {{-- Sweet Alert --}}
         @include('sweetalert::alert')
-
-        <!-- OverLayScrollbars -->
-        {{-- <script src="js/adminlte/jquery.overlayScrollbars.min.js"></script> --}}
-
-        <!-- Bootstrap -->
-        {{-- <script src="js/adminlte/bootstrap.bundle.min.js"></script> --}}
-
-        <!-- Dashboard -->
-        {{-- <script src="js/adminlte/dashboard2.js"></script> --}}
     @endauth
+    
+    @yield('table-script')
 
 </body>
+
+<!-- JQuery -->
+{{-- <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script> --}}
+<script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script>
+
 </html>

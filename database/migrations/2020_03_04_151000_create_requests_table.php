@@ -17,6 +17,8 @@ class CreateRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->text('description');
             $table->enum('state', ['registered', 'assigned', 'pending', 'rejected', 'completed']);
+            $table->integer('number_of_pages');
+            $table->date('maximun_date');
             $table->timestamps();
 
             // LLaves Foraneas.

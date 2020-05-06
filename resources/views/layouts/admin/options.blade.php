@@ -11,6 +11,31 @@
             </a>
         </li>
 
+        {{-- Boton para CRUD de "PQRS" --}}
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-envelope"></i>
+            <p>
+              PQRS
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/officials" class="nav-link">
+                <i class="fa fa-eye nav-icon"></i>
+                <p>Ver Todos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/officials/create" class="nav-link">
+                <i class="fas fa-plus nav-icon"></i>
+                <p>Crear</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         {{-- Boton para CRUD de "Funcionarios" --}}
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -47,9 +72,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/applicants" class="nav-link">
-                  <i class="fa fa-eye nav-icon"></i>
-                  <p>Ver Todos</p>
+                <a href="#" class="nav-link">
+                  <i class="fa fa-user-circle nav-icon"></i>
+                  <p>Particulares</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-city nav-icon"></i>
+                  <p>Entidades Privadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-landmark nav-icon"></i>
+                  <p>Entidades Públicas</p>
                 </a>
               </li>
               <li class="nav-item">

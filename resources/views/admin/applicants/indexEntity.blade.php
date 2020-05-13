@@ -18,11 +18,6 @@
       <!-- Tabla Full para gráficar los datos. -->
       <div class="card">
         <div class="card-header">
-          @if ($search)
-          <div class="alert alert-primary" role="alert">
-            El Resultado de la busqueda '{{$search}}' es:
-          </div>
-          @endif
           <h3 class="card-title">Listado De Entidades {{ $type }}:</h3>
         </div>          
         <!-- /.card-header -->
@@ -56,12 +51,12 @@
                       @endif
                       <td class="center-icons">
                           <form action="{{ route('entities.destroy', $entity->id) }}" method="post" class="size-field">
-                              <a class="btn" href="entities/{{ $entity->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                              <a class="btn" href="entities/{{ $entity->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                              {{-- <a class="btn" href="entities/{{ $entity->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
+                              <a title="Editar Entidad" class="btn" href="entities/{{ $entity->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                               {{-- Boton de eliminar --}}                            
                               {{ csrf_field() }}
                               {{ method_field('DELETE') }}
-                              <button type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                              <button title="Eliminar Entidad" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                           </form>                            
                       </td>
                   </tr>                    
@@ -74,6 +69,7 @@
                   @endif
             </tbody>
           </table>
+          {{ $entities->links() }}
         </div>
         <!-- /.card-body -->
       </div>

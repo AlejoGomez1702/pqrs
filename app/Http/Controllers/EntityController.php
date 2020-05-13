@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Entity;
 
 class EntityController extends Controller
@@ -12,14 +13,14 @@ class EntityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {      
         // "entityId": (1) => Públicas; (2) = Privadas.
         $entityId = $request->entityId;
         $entityName = ($entityId == 1) ? "public" : "private";
         $theType = ($entityId == 1) ? "Públicas" : "Privadas";
 
-        $entities = Entity::where('type', $entityName)->get();
+        $entities = Entity::where('type', $entityName)->paginate(10);
 
         return view('admin.applicants.indexEntity', 
                         ['entities' => $entities, 'type' => $theType, 'search' => null]);
@@ -30,10 +31,10 @@ class EntityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -79,10 +80,10 @@ class EntityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -92,7 +93,9 @@ class EntityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $entity = Entity::findOrFail($id);
+        return view('admin.applicants.editEntity')
+                    ->with('entity', $entity);
     }
 
     /**
@@ -104,7 +107,18 @@ class EntityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $entity = Entity::findOrFail($id);
+        $check = $entity->update($request->all());
+        if($check)
+        {
+            Alert::success('Entidad Actualizada Correctamente!', $entity->name);                                
+        }
+        else
+        {
+            Alert::warning('No Fue Posible Actualizar La Entidad!', $entity->name);                                
+        }
+        
+        return redirect()->route('entities.index');
     }
 
     /**
@@ -115,6 +129,13 @@ class EntityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $entity = Entity::findOrFail($id);
+        $check = $entity->delete();
+        if($check)
+        {
+            Alert::error('Entidad Eliminada Correctamente!', $entity->name);                            
+        }
+
+        return redirect()->route('entities.index');
     }
 }

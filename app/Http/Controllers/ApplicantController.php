@@ -108,7 +108,6 @@ class ApplicantController extends Controller
         }
         
         return redirect()->route('applicants.index');
-
     }
 
     /**

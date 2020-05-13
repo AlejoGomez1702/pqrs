@@ -20,19 +20,7 @@ class ApplicantController extends Controller
      */
     public function index(Request $request)
     {
-        if($request)
-        {
-            $search = trim($request->search);
-            $applicants = User::role('applicant')
-                        ->where('identification_card','LIKE', '%' . $search . '%')
-                        ->orderBy('names')
-                        ->get();
-
-            return view('admin.applicants.indexParticular')
-                            ->with(['applicants'=> $applicants, 'search' => $search]);
-        }
-
-        $applicants = User::role('applicant')->get();
+        $applicants = User::role('applicant')->paginate(10);
 
         return view('admin.applicants.indexParticular')
                     ->with('applicants', $applicants);
@@ -79,10 +67,10 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -92,7 +80,9 @@ class ApplicantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $applicant = User::role('applicant')->findOrFail($id);     
+        return view('admin.applicants.editParticular')
+                    ->with('applicant', $applicant);   
     }
 
     /**
@@ -104,7 +94,21 @@ class ApplicantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $applicant = User::role('applicant')->findOrFail($id);
+        $check = $applicant->update($request->all());
+        if($check)
+        {
+            Alert::success('Peticionario Actualizado Correctamente!', 
+                                $applicant->names . " " . $applicant->surnames);
+        }
+        else
+        {
+            Alert::warning('No Fue Posible Actualizar El Peticionario',
+                                $applicant->name);
+        }
+        
+        return redirect()->route('applicants.index');
+
     }
 
     /**
@@ -115,6 +119,14 @@ class ApplicantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $applicant = User::role('applicant')->findOrFail($id);
+        $check = $applicant->delete();
+        if($check)
+        {
+            Alert::error('Peticionario Eliminado Correctamente!', 
+                            $applicant->names . " " . $applicant->surnames);
+        }
+
+        return redirect()->route('applicants.index');
     }
 }

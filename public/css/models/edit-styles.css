@@ -1,0 +1,89 @@
+.select-option
+{
+    /* background-color: aqua; */
+    padding-top: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: x-large;
+}
+
+.center-select
+{
+    text-align-last:center;
+    padding-right: 29px;
+    /* direction: rtl; */
+}
+
+.button-center
+{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 75%;
+    width: 25%;
+    /* align-content: flex-start; */
+    /* margin-left: 0px; */
+    /* margin-left: 30px; */
+        /* background-color: blue; */
+}
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* #pr, #pa
+{
+    display: none;
+} */
+
+.text-form
+{
+    margin-top: 25px;
+    text-align: left;
+    font-size: medium;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color:#F7F7F7;
+}
+
+.line
+{
+    width: 64%;
+    height: 47px;
+    border-bottom: 1px solid black;
+    position: absolute;
+}
+
+.text-center
+{
+    border-bottom: 1px solid black;
+    /* background-color: yellow; */
+    /* height: 120px; */
+}
+
+.btn-size
+{
+    width: 100%;    
+}
+
+.btn-aln
+{
+    width: 30%;
+    margin-left: 35%;
+}
+
+.public-entity, .private-entity
+{
+    background-color: white;
+}
+
+.txt-title
+{
+    font-size: large;
+    text-align: center;
+}
+
+.fm-color
+{
+    background-color: white;
+}

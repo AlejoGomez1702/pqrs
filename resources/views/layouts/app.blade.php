@@ -22,6 +22,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte/adminlte.min.css') }}" rel="stylesheet" >
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"> --}}
 
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/a950d22064.js" crossorigin="anonymous"></script>
@@ -31,6 +33,7 @@
 
     <!-- JQuery -->
     <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script>
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"> --}}
 
     {{-- Chart JS --}}
     <script src="{{ asset('js/chart-js.min.js') }}"></script>
@@ -56,7 +59,7 @@
                 </ul>
 
                 <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
+                {{-- <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" name="search" placeholder="Buscar..." aria-label="Search">
                     <div class="input-group-append">
@@ -65,7 +68,7 @@
                     </button>
                     </div>
                 </div>
-                </form>
+                </form> --}}
 
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -226,13 +229,13 @@
         @include('sweetalert::alert')
     @endauth
     
-    @yield('table-script')
+    {{-- @yield('table-script') --}}
 
 </body>
 
 <!-- JQuery -->
 {{-- <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script> --}}
-<script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script>
+{{-- <script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script> --}}
 
 </html>

@@ -25,6 +25,7 @@
                     </select>                    
                 </div>                
 
+                {{-- Entidad pública --}}
                 <div id="pu" class="public-entity text-form fm-color">
                     <div class="alert alert-dark txt-title" role="alert">
                         Nueva Entidad Pública
@@ -55,6 +56,7 @@
                     {!! Form::close() !!}
                 </div>
 
+                {{-- Entidad privada --}}
                 <div id="pr" class="private-entity text-form fm-color">
                     <div class="alert alert-dark txt-title" role="alert">
                         Nueva Entidad Privada
@@ -85,6 +87,7 @@
                     {!! Form::close() !!}
                 </div>
 
+                {{-- Particular --}}
                 <div id="pa" class="particular text-form fm-color">
                     <div class="alert alert-dark txt-title" role="alert">
                         Nuevo Solicitante Particular

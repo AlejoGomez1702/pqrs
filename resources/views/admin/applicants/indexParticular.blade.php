@@ -1,7 +1,6 @@
 {{-- Estilos para los iconos del listado --}}
 @push('styles')
     <link href="{{ asset('css/models/list-styles.css') }}" rel="stylesheet"> 
-    <link href="{{ asset('css/adminlte/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 
 @extends('layouts.app')
@@ -18,17 +17,13 @@
       <!-- Tabla Full para gráficar los datos. -->
       <div class="card">
         <div class="card-header">
-          @if ($search)
-          <div class="alert alert-primary" role="alert">
-            El Resultado de la busqueda '{{$search}}' es:
-          </div>
-          @endif
           <h3 class="card-title">Listado De Peticionarios Particulares:</h3>
         </div>          
         <!-- /.card-header -->
         <div class="card-body">
           <table id="main-table" class="table table-bordered table-hover">
             <thead class="thead-dark text-center">
+              @if (count($applicants) != 0)
               <tr>
                   <th>Cédula</th>
                   <th>Nombres</th>
@@ -38,8 +33,7 @@
                   <th>Acciones</th>
               </tr>
             </thead>
-            <tbody>
-                  @if (count($applicants) != 0)
+            <tbody>                  
                   {{-- Recorriendo los funcionarios obtenidos --}}
                   @foreach ($applicants as $applicant)
                   <tr class="" >
@@ -58,12 +52,12 @@
                       @endif
                       <td class="center-icons">
                           <form action="{{ route('applicants.destroy', $applicant->id) }}" method="post" class="size-field">
-                              <a class="btn" href="applicants/{{ $applicant->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                              <a class="btn" href="applicants/{{ $applicant->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                              {{-- <a class="btn" href="applicants/{{ $applicant->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
+                              <a title="Modificar Solicitante" class="btn" href="applicants/{{ $applicant->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                               {{-- Boton de eliminar --}}                            
                               {{ csrf_field() }}
                               {{ method_field('DELETE') }}
-                              <button type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                              <button title="Eliminar Solicitante" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                           </form>                            
                       </td>
                   </tr>                    
@@ -76,6 +70,7 @@
                   @endif
             </tbody>
           </table>
+          {{ $applicants->links() }}
         </div>
         <!-- /.card-body -->
       </div>

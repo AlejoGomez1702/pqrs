@@ -17,17 +17,18 @@
         <!-- Tabla Full para gráficar los datos. -->
         <div class="card">
           <div class="card-header">
-            @if ($search)
+            {{-- @if ($search)
             <div class="alert alert-primary" role="alert">
               El Resultado de la busqueda '{{$search}}' es:
             </div>
-            @endif
+            @endif --}}
             <h3 class="card-title">Listado De Funcionarios:</h3>
           </div>          
           <!-- /.card-header -->
           <div class="card-body">
             <table id="main-table" class="table table-bordered table-hover">
               <thead class="thead-dark text-center">
+                @if (count($officials) != 0)
                 <tr>
                     <th>Cédula</th>
                     <th>Nombres</th>
@@ -38,7 +39,7 @@
                 </tr>
               </thead>
               <tbody>
-                    @if (count($officials) != 0)
+                    {{-- @if (count($officials) != 0) --}}
                     {{-- Recorriendo los funcionarios obtenidos --}}
                     @foreach ($officials as $official)
                     <tr class="" >
@@ -67,6 +68,7 @@
                     @endif
               </tbody>
             </table>
+            {{ $officials->links() }}
           </div>
           <!-- /.card-body -->
         </div>

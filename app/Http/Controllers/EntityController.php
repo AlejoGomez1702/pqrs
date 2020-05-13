@@ -12,25 +12,12 @@ class EntityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {      
         // "entityId": (1) => Públicas; (2) = Privadas.
         $entityId = $request->entityId;
         $entityName = ($entityId == 1) ? "public" : "private";
         $theType = ($entityId == 1) ? "Públicas" : "Privadas";
-
-        if($request->search)
-        {
-            //***********ARRRREEEEGLLLLARRRRRR */
-            // $search = trim($request->search);
-            // $entities = Entity::where('type', $entityName)
-            //             ->where('name','LIKE', '%' . $search . '%')
-            //             ->orderBy('name')
-            //             ->get();
-            
-            // return view('admin.applicants.indexEntity', 
-            //             ['entities' => $entities, 'type' => $theType, 'search' => $search]);
-        }
 
         $entities = Entity::where('type', $entityName)->get();
 

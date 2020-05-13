@@ -24,7 +24,7 @@ Route::resource('officials', 'OfficialController');
 Route::resource('dependences', 'DependenceController');
 
 // Rutas para el CRUD de solicitantes.
-Route::resource('applicants', 'ApplicantController');
+Route::resource('applicants', 'ApplicantController')->except('show');
 Route::resource('entities', 'EntityController');
 
 // Rutas para el CRUD de categorías.

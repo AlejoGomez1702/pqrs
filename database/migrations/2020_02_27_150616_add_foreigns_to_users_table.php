@@ -14,6 +14,8 @@ class AddForeignsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+
+            //En una dependencia hay varios usuarios.
             $table->unsignedBigInteger('dependence_id')
                                 ->after('id')->nullable();
 

@@ -20,8 +20,20 @@ class OfficialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request)
+        {
+            $search = trim($request->search);
+            $officials = User::role('official')
+                        ->where('identification_card','LIKE', '%' . $search . '%')
+                        ->orderBy('names')
+                        ->get();
+
+            return view('admin.officials.index')
+                            ->with(['officials'=> $officials, 'search' => $search]);
+        }
+
         $officials = User::role('official')->get();
         return view('admin.officials.index')
                     ->with('officials', $officials);

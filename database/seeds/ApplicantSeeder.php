@@ -21,7 +21,7 @@ class ApplicantSeeder extends Seeder
         $applicant->surnames = "cultura";
         $applicant->email = "applicant@mail.com";        
         $applicant->cellphone = "3217816922";
-        $applicant->assignRole(['applicant', 'particular_person']);
+        // $applicant->assignRole(['applicant', 'particular_person']);
         $applicant->save();
 
         // Solicitante #2.
@@ -31,7 +31,7 @@ class ApplicantSeeder extends Seeder
         $applicant2->surnames = "curall";
         $applicant2->email = "applicant2@mail.com";
         $applicant2->cellphone = "3114707230";
-        $applicant2->assignRole(['applicant', 'particular_person']);
+        // $applicant2->assignRole(['applicant', 'particular_person']);
         $applicant2->save();
 
         //*********PÚBLICOS*********PÚBLICOS*********PÚBLICOS*********PÚBLICOS********** */

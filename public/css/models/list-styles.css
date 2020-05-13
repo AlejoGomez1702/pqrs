@@ -20,3 +20,13 @@
     /* padding-top: -50px; */
     height: 8px;
 }
+
+.center-icons
+{
+    text-align: center;
+}
+
+.quit-color
+{
+    color: black;
+}

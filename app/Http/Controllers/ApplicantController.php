@@ -18,11 +18,23 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request)
+        {
+            $search = trim($request->search);
+            $applicants = User::role('applicant')
+                        ->where('identification_card','LIKE', '%' . $search . '%')
+                        ->orderBy('names')
+                        ->get();
+
+            return view('admin.applicants.indexParticular')
+                            ->with(['applicants'=> $applicants, 'search' => $search]);
+        }
+
         $applicants = User::role('applicant')->get();
 
-        return view('admin.applicants.index')
+        return view('admin.applicants.indexParticular')
                     ->with('applicants', $applicants);
     }
 
@@ -44,11 +56,17 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'identification_card' => ['required', 'max:20'],
+            'names' => ['required', 'max:100'],
+            'surnames' => ['required', 'max:30'],
+        ]);
+        //return $request;
         $applicant = User::create($request->all());
         $applicant->assignRole('applicant');
 
         if($applicant)        
-            Alert::success('Funcionario Creado Correctamente!', 
+            Alert::success('Peticionario Creado Correctamente!', 
                                 $applicant->names . " " . $applicant->surnames);
         
 

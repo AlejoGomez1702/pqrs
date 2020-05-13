@@ -17,8 +17,10 @@ class DependenceController extends Controller
     {
         $dependences = Dependence::all();
 
-        return view('admin.dependences.index')
-                    ->with('dependences', $dependences);
+        return view('admin.dependences.index', [
+            'dependences' => $dependences,
+            'search' => null
+        ]);
     }
 
     /**

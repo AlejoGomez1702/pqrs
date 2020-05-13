@@ -18,6 +18,14 @@ class CreateDependencesTable extends Migration
             $table->string('name')->unique();       
             $table->string('email')->unique();     
             $table->timestamps();
+
+            //En una dependencia hay varios usuarios.
+            // $table->unsignedBigInteger('user_id')->nullable();                                        
+
+            // $table->foreign('user_id')
+            //             ->references('id')->on('users')
+            //             ->onDelete('set null')
+            //             ->onUpdate('cascade');
         });
     }
 

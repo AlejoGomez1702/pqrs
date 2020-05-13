@@ -72,21 +72,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('applicants.index') }}" class="nav-link">
                   <i class="fa fa-user-circle nav-icon"></i>
                   <p>Particulares</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('entities.index', ['entityId'=>1]) }}" class="nav-link">
                   <i class="fa fa-city nav-icon"></i>
-                  <p>Entidades Privadas</p>
+                  <p>Entidades Públicas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('entities.index', ['entityId'=>2]) }}" class="nav-link">
                   <i class="fa fa-landmark nav-icon"></i>
-                  <p>Entidades Públicas</p>
+                  <p>Entidades Privadas</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -25,6 +25,7 @@ Route::resource('dependences', 'DependenceController');
 
 // Rutas para el CRUD de solicitantes.
 Route::resource('applicants', 'ApplicantController');
+Route::resource('entities', 'EntityController');
 
 // Rutas para el CRUD de categorías.
 Route::resource('categories', 'CategoryController');
@@ -33,11 +34,23 @@ Route::resource('categories', 'CategoryController');
 Route::resource('requests', 'RequestController');
 
 Route::get('pruebitas', function(){
-    $request = App\request::find(1);
+    // $request = App\request::find(1);
 
-    foreach ($request->users as $user) 
+    $dependece = App\Dependence::find(1)->getLeader();
+
+    if($dependece != null)
     {
-        echo $user->names . "<br>";
+        echo var_dump($dependece);
     }
+    else{
+        echo "ohohohooho" . "<br>";
+    }
+
+    
+
+    // foreach ($request->users as $user) 
+    // {
+    //     echo $user->names . "<br>";
+    // }
 });
 

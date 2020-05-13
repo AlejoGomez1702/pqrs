@@ -29,24 +29,24 @@
                     <div class="alert alert-dark txt-title" role="alert">
                         Nueva Entidad Pública
                     </div>
-                    {!! Form::open(['url' => 'foo/bar']) !!}
+                    {!! Form::open(['url' => '/entities']) !!}
                     <input type="hidden" id="custId" name="entityId" value="1">
                     <div class="card-body">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nombre: </label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el nombre de la entidad">
+                          <label for="exampleInputEmail1">Nombre: *</label>
+                          <input type="text" class="form-control" name="name" required id="exampleInputEmail1" placeholder="Ingrese el nombre de la entidad">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">NIT: </label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ingrese el NIT de la entidad">
+                          <label for="exampleInputPassword1">NIT: *</label>
+                          <input type="text" class="form-control" name="nit" required id="exampleInputPassword1" placeholder="Ingrese el NIT de la entidad">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Celular: </label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ingrese número celular de la entidad (opcional)">
+                            <input type="text" class="form-control" name="cellphone" id="exampleInputPassword1" placeholder="Ingrese número celular de la entidad (opcional)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Corre Electrónico: </label>
-                            <input type="email" class="form-control" placeholder="Ingrese el correo electrónico de la entidad (opcional)">
+                            <input type="email" class="form-control" name="email" placeholder="Ingrese el correo electrónico de la entidad (opcional)">
                         </div>
                         <div class="btn-size">
                             <button type="submit" class="btn btn-primary">Registrar</button>
@@ -59,24 +59,24 @@
                     <div class="alert alert-dark txt-title" role="alert">
                         Nueva Entidad Privada
                     </div>
-                    {!! Form::open(['url' => 'foo/bar']) !!}
+                    {!! Form::open(['url' => '/entities']) !!}
                     <input type="hidden" id="custId" name="entityId" value="2">
                     <div class="card-body">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nombre: </label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el nombre de la entidad">
+                          <label for="exampleInputEmail1">Nombre: *</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" name="name" required placeholder="Ingrese el nombre de la entidad">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">NIT: </label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ingrese el NIT de la entidad">
+                          <label for="exampleInputPassword1">NIT: *</label>
+                          <input type="text" class="form-control" id="exampleInputPassword1" name="nit" required placeholder="Ingrese el NIT de la entidad">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Celular: </label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ingrese número celular de la entidad (opcional)">
+                            <input type="text" class="form-control" id="exampleInputPassword1" name="cellphone" placeholder="Ingrese número celular de la entidad (opcional)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Corre Electrónico: </label>
-                            <input type="email" class="form-control" placeholder="Ingrese el correo electrónico de la entidad (opcional)">
+                            <input type="email" class="form-control" name="email" placeholder="Ingrese el correo electrónico de la entidad (opcional)">
                         </div>
                         <div class="btn-size">
                             <button type="submit" class="btn btn-primary">Registrar</button>
@@ -89,28 +89,28 @@
                     <div class="alert alert-dark txt-title" role="alert">
                         Nuevo Solicitante Particular
                     </div>
-                    {!! Form::open(['url' => 'foo/bar']) !!}
+                    {!! Form::open(['url' => '/applicants']) !!}
                     <input type="hidden" id="custId" name="entityId" value="3">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Cédula: </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese la cédula del solicitante">
+                            <label for="exampleInputEmail1">Cédula: *</label>
+                            <input type="text" class="form-control" name="identification_card" placeholder="Ingrese la cédula del solicitante">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nombres: </label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese los nombres del solicitante">
+                          <label for="exampleInputEmail1">Nombres: *</label>
+                          <input type="text" class="form-control" name="names" placeholder="Ingrese los nombres del solicitante">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Apellidos: </label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ingrese los apellidos del solicitante">
+                          <label for="exampleInputPassword1">Apellidos: *</label>
+                          <input type="text" class="form-control" name="surnames" placeholder="Ingrese los apellidos del solicitante">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Correo Electrónico: </label>
-                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Ingrese el correo del solicitante (opcional)">
+                            <input type="email" class="form-control"name="email" placeholder="Ingrese el correo del solicitante (opcional)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Celular: </label>
-                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Ingrese el número celular del solicitante (opcional)">
+                            <input type="number" class="form-control" name="cellphone" placeholder="Ingrese el número celular del solicitante (opcional)">
                         </div>
                         <div class="btn-size">
                             <button type="submit" class="btn btn-primary">Registrar</button>

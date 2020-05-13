@@ -40,6 +40,7 @@ class UsersTableSeeder extends Seeder
         $official->email = "ejemplito@mail.com";
         $official->password = bcrypt('official');
         $official->dependence_id = 1;
+        $official->assignRole('leader');
         $official->assignRole('official');
         $official->save();
 
@@ -51,7 +52,21 @@ class UsersTableSeeder extends Seeder
         $official2->email = "jorgito@mail.com";
         $official2->password = bcrypt('official');
         $official2->dependence_id = 2;
-        $official2->assignRole('official');
+        // $official2->assignRole('leader');
+        $official2->assignRole('official');        
         $official2->save();
+
+        // Funcionario #3.
+        $official3 = new User();
+        $official3->identification_card = "745646354";
+        $official3->names = "Luz";
+        $official3->surnames = "Castaño";
+        $official3->email = "luz@mail.com";
+        $official3->password = bcrypt('official');
+        $official3->dependence_id = 2;
+        // $official3->assignRole('leader');
+        $official3->assignRole('official');        
+        $official3->save();
+
     }
 }

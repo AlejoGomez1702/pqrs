@@ -40,3 +40,66 @@ function enableSection()
 
     //alert(selectedValue);
 }
+
+document.getElementById("private").style.display = "none";
+document.getElementById("particular").style.display = "none";
+document.getElementById("public").style.display = "none";
+
+function showOptions(option)
+{
+    var chec1 = document.getElementById("chec1");
+    var chec2 = document.getElementById("chec2");
+    var chec3 = document.getElementById("chec3");
+
+    if(option == 1) //Si se seleccionó entidad pública.
+    {
+        //Deshabilito los otros checks
+        chec2.checked = false; 
+        chec3.checked = false; 
+        document.getElementById("private").style.display = "none";
+        document.getElementById("particular").style.display = "none";
+
+        if(!chec1.checked)
+        {
+            document.getElementById("public").style.display = "none";
+        }
+        else{
+            document.getElementById("public").style.display = "block";
+        }        
+    }
+    else if(option == 2) // Si se seleccionó entidad privada.
+    {        
+        chec1.checked = false; 
+        chec3.checked = false; 
+        document.getElementById("private").style.display = "block";
+        document.getElementById("particular").style.display = "none";
+        document.getElementById("public").style.display = "none";
+
+        if(!chec2.checked)
+        {
+            document.getElementById("private").style.display = "none";
+        }
+        else{
+            document.getElementById("private").style.display = "block";
+        }
+
+    }
+    else if(option == 3) // Si se seleccionó persona particular.
+    {
+        chec1.checked = false; 
+        chec2.checked = false; 
+        document.getElementById("private").style.display = "none"; 
+        document.getElementById("public").style.display = "none";
+        document.getElementById("particular").style.display = "block";
+
+        if(!chec3.checked)
+        {
+            document.getElementById("particular").style.display = "none";
+        }
+        else{
+            document.getElementById("particular").style.display = "block";
+        }
+
+    }
+    
+}

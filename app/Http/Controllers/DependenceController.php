@@ -15,12 +15,10 @@ class DependenceController extends Controller
      */
     public function index()
     {
-        $dependences = Dependence::all();
+        $dependences = Dependence::paginate(10);
 
-        return view('admin.dependences.index', [
-            'dependences' => $dependences,
-            'search' => null
-        ]);
+        return view('admin.dependences.index')
+                ->with('dependences', $dependences);
     }
 
     /**
@@ -55,13 +53,13 @@ class DependenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $dependence = Dependence::findOrFail($id);
+    // public function show($id)
+    // {
+    //     $dependence = Dependence::findOrFail($id);
 
-        return view('admin.dependences.show')
-                    ->with('dependence', $dependence);
-    }
+    //     return view('admin.dependences.show')
+    //                 ->with('dependence', $dependence);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -114,7 +112,7 @@ class DependenceController extends Controller
         $check = $dependence->delete();
 
         if($check)        
-            Alert::error('Dependencia Eliminado Correctamente!', $dependence->name);
+            Alert::error('Dependencia Eliminada Correctamente!', $dependence->name);
         
 
         return redirect()->route('dependences.index');

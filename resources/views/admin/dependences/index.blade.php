@@ -16,11 +16,6 @@
         <!-- Tabla Full para gráficar los datos. -->
         <div class="card">
           <div class="card-header">
-            @if ($search)
-            <div class="alert alert-primary" role="alert">
-              El Resultado de la busqueda '{{$search}}' es:
-            </div>
-            @endif
             <h3 class="card-title">Listado De Dependecias:</h3>
           </div>          
           <!-- /.card-header -->
@@ -30,6 +25,7 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th>Correo Electrónico</th>
+                    <th>Celular</th>
                     <th>Líder</th>
                     <th> Acciones </th>
                 </tr>
@@ -41,6 +37,7 @@
                     <tr>
                         <td> {{ $dependence->name }} </td>
                         <td> {{ $dependence->email }} </td>
+                        <td> {{ $dependence->cellphone }} </td>
                         @if ($dependence->getLeader())
                         <td class="quit-color"> 
                           <a href="#" class="quit-color">{{ $dependence->getLeader()['names'] . ' ' . $dependence->getLeader()['surnames']}} </a>                   
@@ -49,13 +46,13 @@
                           <td><a href="#">Asignar Líder</a></td>
                         @endif
                         <td class="center-icons">
-                            <form action="{{ route('entities.destroy', $dependence->id) }}" method="post" class="size-field">
-                                <a class="btn" href="entities/{{ $dependence->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                <a class="btn" href="entities/{{ $dependence->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <form action="{{ route('dependences.destroy', $dependence->id) }}" method="post" class="size-field">
+                                {{-- <a class="btn" href="entities/{{ $dependence->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
+                                <a title="Editar Dependencia" class="btn" href="dependences/{{ $dependence->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 {{-- Boton de eliminar --}}                            
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button title="Eliminar Dependencia" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                             </form>                            
                         </td>
                     </tr>                    
@@ -68,6 +65,7 @@
                     @endif
               </tbody>
             </table>
+            {{ $dependences->links() }}
           </div>
           <!-- /.card-body -->
         </div>

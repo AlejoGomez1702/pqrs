@@ -1,58 +1,56 @@
 {{-- Estilos para el formulario create official --}}
 @push('styles')
-    <link href="{{ asset('css/models/create-styles.css') }}" rel="stylesheet" >    
+    <link href="{{ asset('css/models/edit-styles.css') }}" rel="stylesheet" >    
 @endpush
 
 @extends('layouts.app')
 
+@section('title', 'Editar Dependencia')
+
 @section('content')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 mx-auto mt-4">
-            <div class="card shadow">
-                <!-- Card header -->
-                <div class="card-header">
-                    <h3 class="text-center">Editar Datos De La Dependencia</h3>
-                </div>
 
-                <!-- Card body -->
-                <div class="card-body">
-                    {!! Form::model($dependence, ['route' => ['dependences.update', $dependence->id], 
-                                                    'method' => 'put']) !!}
+    <div class="select-option">
+            <div class="form-group">
 
-                    {{-- Nombre --}}
-                    <div class="input-container">
-                        <i class="fas fa-signature icon"></i>
-                        {!! Form::text('name',null, ['class' => 'input-field', 
-                                    'placeholder' => 'Nombre', 'name' => 'name']) !!}
-                    </div>
+                {{-- Particular --}}
+                <div id="pa" class="particular text-form fm-color">
+                    <div class="alert alert-dark txt-title" role="alert">
+                        Editar Dependencia
+                    </div>                   
 
-                    {{-- Correo Electrónico --}}
-                    <div class="input-container">
-                        <i class="fas fa-envelope-open-text icon"></i>
-                        {!! Form::email('email',null, ['class' => 'input-field', 
-                                    'placeholder' => 'Correo Electrónico', 'name' => 'email']) !!}
-                    </div>
-                    
-                    {{-- Botones del formulario --}}
-                    <div class="row mt-4">
-                        <div class="col">                                
-                            <a class="btn btn-light" href="/dependences">
-                                <i class="fa fa-chevron-left mr-md-3" aria-hidden="true"></i> 
-                                ATRAS
-                            </a>
+                    <div class="card-body">
+
+                        {!! Form::model($dependence, ['route' => ['dependences.update', $dependence->id], 'method' => 'patch']) !!}
+                        {{-- Nombre --}}
+                        <div class="form-group">
+                            <label>Nombre: *</label>
+                            {!! Form::text('name',null, ['class' => 'form-control', 
+                                    'placeholder' => 'Nombre de la entidad', 'name' => 'name']) !!}   
                         </div>
-                        <div class="col" >
-                            {!! Form::button('ACTUALIZAR <i class="fa fa-plus ml-md-3" aria-hidden="true"></i>',
-                                ['type' => 'submit', 'class' => 'btn btn-primary float-right']) !!}
+
+                        {{-- Correo Electrónico --}}
+                        <div class="form-group">
+                            <label>Correo Electrónico: </label>
+                            {!! Form::text('email',null, ['class' => 'form-control', 
+                                    'placeholder' => 'Correo electrónico de la entidad (opcional)', 'name' => 'email']) !!}   
+                        </div>
+
+                        {{-- Celular --}}
+                        <div class="form-group">
+                            <label>Celular: </label>
+                            {!! Form::number('cellphone',null, ['class' => 'form-control', 
+                                    'placeholder' => 'Celular de la entidad (opcional)', 'name' => 'cellphone']) !!}   
+                        </div> 
+
+                        <div class="btn-aln btn-group">                            
+                            <button type="button" class="btn-size d-inline btn btn-danger"><a style="color:white;" href="/dependences">Cancelar</a></button>
+                            <button type="submit" class="btn-size d-inline btn btn-success">Aceptar</button>
                         </div>
                     </div>
                     {!! Form::close() !!}
-                    
                 </div>
-
             </div>
-        </div>
     </div>
 </div>    
 @endsection

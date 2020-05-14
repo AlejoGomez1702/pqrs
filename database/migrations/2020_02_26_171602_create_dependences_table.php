@@ -16,8 +16,8 @@ class CreateDependencesTable extends Migration
         Schema::create('dependences', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();       
-            $table->string('email')->unique();  
-            $table->string('cellphone')->unique();   
+            $table->string('email')->unique()->nullable();  
+            $table->string('cellphone')->unique()->nullable();   
             $table->timestamps();
 
             //En una dependencia hay varios usuarios.

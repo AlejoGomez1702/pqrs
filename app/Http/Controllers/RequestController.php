@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Request as Pqrs; // Sobrenombre para las PQRS
+use App\User;
+use App\Entity;
+use App\Dependence;
 
 class RequestController extends Controller
 {
@@ -28,7 +31,19 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        $publics = Entity::where('type', 'public')->get();
+        $privates = Entity::where('type', 'private')->get();
+        $particulars = User::role('applicant');
+        $dependences = Dependence::all();
+        $officials = User::role('official')->get();
+
+        return view('admin.pqrs.create', 
+                        ['publics' => $publics, 
+                        'privates' => $privates, 
+                        'particulars' => $particulars,
+                        'dependences' => $dependences,
+                        'officials' => $officials
+        ]);
     }
 
     /**
@@ -39,7 +54,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

@@ -13,7 +13,6 @@
 
 @section('content')
 <div class="container-fluid">
-
     <div class="select-option">
             <div class="form-group">
                 <div class="text-center">

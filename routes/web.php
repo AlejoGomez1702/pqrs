@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('officials', 'OfficialController');
 
 // Rutas para el CRUD de Dependencias.
-Route::resource('dependences', 'DependenceController');
+Route::resource('dependences', 'DependenceController')->except(['show']);
 
 // Rutas para el CRUD de solicitantes.
 Route::resource('applicants', 'ApplicantController')->except('show');

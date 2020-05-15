@@ -9,10 +9,10 @@ class Request extends Model
     /**
      * Una petición pertenece a una categoría.
      */
-    public function category()
-    {
-        return $this->belongsTo('App\Category');
-    }
+    // public function category()
+    // {
+    //     return $this->belongsTo('App\Category');
+    // }
 
     /**
      * Una petición se hace en una dependencia.

@@ -114,11 +114,11 @@
                         </div>
 
                         {{-- Archivos de la petición --}}
-                        <label>Adjuntar archivos de la PQRS: </label>
+                        <label>Adjuntar archivo de la PQRS: </label>
                         <div class="custom-file">
                             
                             <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="files">
-                            <label class="custom-file-label" for="customFileLang">Seleccionar Archivos...</label>
+                            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo...</label>
                         </div>
 
                         <div class="btn-aln btn-group btn-down">                            

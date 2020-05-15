@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Request as Pqrs; // Sobrenombre para las PQRS
 use App\User;
@@ -10,6 +12,11 @@ use App\Dependence;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +24,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-    //     $petitions = Petition::all();
-    //     $users = $petitions[0]->category[+
-    // ];
-
-    //     return $users;
+        return 'Index de los pqrs';
     }
 
     /**
@@ -54,7 +57,37 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $request->validate([
+            'number_of_pages' => 'required',
+            'description' => 'required',
+            'dependence' => 'required',
+            'official' => 'required',
+            'max_date' => 'required',            
+        ]);
+
+        $pqrs = new Pqrs();
+        $pqrs->description = $request->description;
+        $pqrs->state = 'pending';
+        $pqrs->number_of_pages = $request->number_of_pages;
+        $pqrs->maximun_date = $request->max_date;
+
+        // Dependencia de la pqrs.
+        $dependence = Dependence::findOrFail($request->dependence);
+        $pqrs->dependence_id = $dependence->id;
+        $pqrs->save();
+
+        // Funcionario al que se le asigna la pqrs.
+        $user = User::role('official')->findOrFail($request->official);
+        $pqrs->users()->attach($user, ['receiver' => false]);
+
+        // Persona que creo la pqrs en el sistema.
+        $user_create = Auth::user();
+        $pqrs->users()->attach($user_create, ['receiver' => true]);
+
+        if($pqrs)        
+            Alert::success('PQRS Creada Correctamente!', 'Radicado: ' . $pqrs->id);                                
+        
+        return redirect()->route('requests.index');
     }
 
     /**

@@ -28,7 +28,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/officials/create" class="nav-link">
+              <a href="/requests/create" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
                 <p>Crear</p>
               </a>

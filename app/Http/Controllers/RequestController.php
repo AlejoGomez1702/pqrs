@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Request as Pqrs; // Sobrenombre para las PQRS
 use App\User;
 use App\Entity;
@@ -24,7 +25,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-        return 'Index de los pqrs';
+        $pqrs = Pqrs::paginate(10);
+        return view('admin.pqrs.index', ['pqrs' => $pqrs]);
     }
 
     /**
@@ -57,6 +59,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
+        // return dd($request->file('files'));
         $request->validate([
             'number_of_pages' => 'required',
             'description' => 'required',
@@ -84,8 +87,18 @@ class RequestController extends Controller
         $user_create = Auth::user();
         $pqrs->users()->attach($user_create, ['receiver' => true]);
 
-        if($pqrs)        
-            Alert::success('PQRS Creada Correctamente!', 'Radicado: ' . $pqrs->id);                                
+        // Añadiendo el archivo a la pqrs.
+        $file = $request->file('files');
+        if($file)
+        {
+            // return var_dump($file);          
+            // $name_file = 'file_pqrs' . $pqrs->id . Carbon::now();
+            //return $name_file;
+            $pqrs->addMedia($file)->toMediaCollection();
+        }
+
+        // if($pqrs)        
+        Alert::success('PQRS Creada Correctamente!', 'Radicado #: ' . $pqrs->id);                                
         
         return redirect()->route('requests.index');
     }
@@ -98,7 +111,8 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $pqr = Pqrs::findOrFail($id);
+        return view('admin.pqrs.show', ['pqr' => $pqr]);
     }
 
     /**

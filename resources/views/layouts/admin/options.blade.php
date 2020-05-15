@@ -22,7 +22,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/officials" class="nav-link">
+              <a href="/requests" class="nav-link">
                 <i class="fa fa-eye nav-icon"></i>
                 <p>Ver Todos</p>
               </a>

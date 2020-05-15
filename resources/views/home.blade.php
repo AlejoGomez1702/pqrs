@@ -12,13 +12,13 @@
         {{-- <div class="col-md-8"> --}}
         {{-- PQRS --}}
         <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="{{ route('officials.index') }}" style="color: #000000;">
+            <a href="{{ route('requests.index') }}" style="color: #000000;">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-envelope"></i></span>
         
                     <div class="info-box-content">
                         <span class="info-box-text">PQRS</span>
-                        <span class="info-box-number">{{ $cant_officials }}</span>
+                        <span class="info-box-number">{{ $cant_pqrs }}</span>
                     </div>
                 </div>
             </a>            
@@ -40,7 +40,7 @@
 
         {{-- Solicitantes --}}
         <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="#" style="color: #000000;">
+            <a href="{{ route('applicants.index') }}" style="color: #000000;">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-tie"></i></span>
         
@@ -84,7 +84,7 @@
                 <div class="card-body">
                   <canvas id="pieChart"></canvas>
                 </div>
-                <a href="">
+                <a href="/requests/create">
                     <button type="button" class="btn btn-dark align-btn">Nueva PQRS</button>
                 </a>
 
@@ -101,11 +101,11 @@
 <script>
 
     var donutData = {
-      labels: ['registered', 'assigned', 'pending', 'rejected', 'completed'],
+      labels: ['Pendientes', 'Completados'],
       datasets: [
         {
-          data: [700,500,400,600,300],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
+          data: [{{ $pendings }},{{ $completes }}],
+          backgroundColor : ['#f56954', '#00a65a'],
         }
       ]
     }

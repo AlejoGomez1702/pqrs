@@ -25,7 +25,10 @@
 
                     <div class="card-body">
 
-                        {!! Form::open(['url' => '/requests']) !!} 
+                        {{-- <form method="POST" action="{{ route('requests.store') }}" enctype="multipart/form-data">
+                        @csrf --}}
+                        {{-- </form> --}}
+                        {!! Form::open(['url' => '/requests', 'files' => true]) !!}  
                         {{-- Número de páginas --}}
                         <div class="form-group">
                             <label>Número de páginas: *</label>
@@ -117,7 +120,8 @@
                         <label>Adjuntar archivo de la PQRS: </label>
                         <div class="custom-file">
                             
-                            <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="files">
+                            {{-- <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="files"> --}}
+                            {!! Form::file('files', ['class' => 'custom-file-input', 'id' => 'customFileLang', 'lang' => 'es']) !!}
                             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo...</label>
                         </div>
 
@@ -125,8 +129,12 @@
                             <button type="button" class="btn-size d-inline btn btn-danger"><a style="color:white;" href="/entities">Cancelar</a></button>
                             <button type="submit" class="btn-size d-inline btn btn-success">Aceptar</button>
                         </div>
+
+                        {{-- </form> --}}
+                        {!! Form::close() !!}
                     </div>
-                    {!! Form::close() !!}
+                        
+                    {{-- {!! Form::close() !!} --}}
                 </div>
             </div>
     </div>

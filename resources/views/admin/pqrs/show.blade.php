@@ -20,15 +20,23 @@
                     <li class="list-group-item">Descripción: {{ $pqr->description }}</li>
                     @if ($pqr->state == 'pending')
                         <li class="list-group-item">Estado: <span style="color: red;">Pendiente</span></li>
-                    @else
+                    @endif
+                    @if ($pqr->state == 'completed')
                         <li class="list-group-item">Estado: <span style="color: green;">Completado</span></li>
                     @endif
+                    @if ($pqr->state == 'read')
+                        <li class="list-group-item">Estado: <span style="color: yellow;">Leído</span></li>
+                    @endif
+
                     <li class="list-group-item">Dependencia: {{ $pqr->dependence->name }}</li>
                     <li class="list-group-item">Funcionario: {{ $pqr->getOfficial()['names'] }}</li>
                     
                     <li class="list-group-item">Número de páginas: {{ $pqr->number_of_pages }}</li>
                     <li class="list-group-item">Fecha de creación: {{ $pqr->created_at }}</li>
                     <li class="list-group-item">Fecha máxima respuesta: {{ $pqr->maximun_date }}</li>
+                    @if (!Auth::user()->isAdmin())  
+                    <li class="list-group-item"><a href="{{ route('giveanswer', ['pqr' => $pqr->id]) }}"><button type="button" class="btn btn-primary">Responder</button></a></li>
+                    @endif
                     <ul class="list-group list-group-flush">
                         Documentos de la PQRS:
                         @foreach ($pqr->getMedia() as $doc)
@@ -37,9 +45,12 @@
                     </ul>
 
                 </ul>
-            </div>
-            
+            </div>            
         </div>
+
+        {{-- Boton que permite dar respuesta a la pqrs por parte del funcionario --}}
+
+
     </div>
 
 @endsection

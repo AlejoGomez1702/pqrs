@@ -25,8 +25,14 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $pqrs = Pqrs::paginate(10);
-        return view('admin.pqrs.index', ['pqrs' => $pqrs]);
+        if(Auth::user()->isAdmin())
+        {
+            $pqrs = Pqrs::paginate(10);
+            return view('admin.pqrs.index', ['pqrs' => $pqrs]);
+        }   
+
+        $pqrs = Auth::user()->requests;
+        return view('admin.pqrs.index', ['pqrs' => $pqrs]);        
     }
 
     /**
@@ -110,8 +116,14 @@ class RequestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {      
         $pqr = Pqrs::findOrFail($id);
+        if(!Auth::user()->isAdmin())
+        {
+            $pqr->state = 'read';
+            $pqr->save();
+        }            
+
         return view('admin.pqrs.show', ['pqr' => $pqr]);
     }
 

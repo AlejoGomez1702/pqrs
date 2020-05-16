@@ -10,61 +10,12 @@
 <div class="container">
     <div class="row">
         {{-- <div class="col-md-8"> --}}
-        {{-- PQRS --}}
-        <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="{{ route('requests.index') }}" style="color: #000000;">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-envelope"></i></span>
-        
-                    <div class="info-box-content">
-                        <span class="info-box-text">PQRS</span>
-                        <span class="info-box-number">{{ $cant_pqrs }}</span>
-                    </div>
-                </div>
-            </a>            
-        </div>
+        @if (Auth::user()->isAdmin())
+            @include('layouts.admin.home')
+        @else
+            @include('layouts.official.home')
+        @endif
 
-        {{-- Funcionarios --}}
-        <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="{{ route('officials.index') }}" style="color: #000000;">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
-        
-                    <div class="info-box-content">
-                        <span class="info-box-text">Funcionarios</span>
-                        <span class="info-box-number">{{ $cant_officials }}</span>
-                    </div>
-                </div>
-            </a>            
-        </div>
-
-        {{-- Solicitantes --}}
-        <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="{{ route('applicants.index') }}" style="color: #000000;">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-tie"></i></span>
-        
-                    <div class="info-box-content">
-                        <span class="info-box-text">Solicitantes</span>
-                        <span class="info-box-number">{{ $cant_applicants }}</span>
-                    </div>
-                </div>
-            </a>            
-        </div>
-
-        {{-- Dependencias --}}
-        <div class="col-12 col-sm-6 col-md-3 mt-4">
-            <a href="{{ route('dependences.index') }}" style="color: #000000;">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-building"></i></span>
-        
-                    <div class="info-box-content">
-                        <span class="info-box-text">Dependencias</span>
-                        <span class="info-box-number">{{ $cant_dependences }}</span>
-                    </div>
-                </div>
-            </a>            
-        </div>
 
     </div>
 
@@ -84,9 +35,12 @@
                 <div class="card-body">
                   <canvas id="pieChart"></canvas>
                 </div>
+
+                @if (Auth::user()->isAdmin())
                 <a href="/requests/create">
                     <button type="button" class="btn btn-dark align-btn">Nueva PQRS</button>
                 </a>
+                @endif
 
                 <br><br>
                 

@@ -69,35 +69,32 @@
                 <!-- Right navbar links -->
                 
                 <ul class="navbar-nav ml-auto">
-                    @if (!Auth::user()->isAdmin())
-                
-                    <!-- Notifications Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                        </div>
-                    </li>
+                    @if (!Auth::user()->isAdmin())                
+                    @foreach (Auth::user()->requests as $pqr)
+                        <!-- Notifications Dropdown Menu -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-bell"></i>
+                            <span class="badge badge-warning navbar-badge">{{ count(Auth::user()->getUnreadRequests()) }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-item dropdown-header">{{ count(Auth::user()->getUnreadRequests()) }} PQRS sin ver</span>
+                            <div class="dropdown-divider"></div>
+
+                            @foreach (Auth::user()->getUnreadRequests() as $pqr)
+                            <a href="#" class="dropdown-item">
+                                @if (strlen($pqr->description) > 17)
+                                <a href="{{ route('requests.show', $pqr->id) }}"><i class="fas fa-envelope mr-2"></i> {{ substr($pqr->description, 0, 17) }}</a>
+                                @else
+                                <a href="{{ route('requests.show', $pqr->id) }}"><i class="fas fa-envelope mr-2"></i> {{ $pqr->description }}</a>     
+                                @endif
+                                
+                                <span class="float-right text-muted text-sm">Faltan {{ ' ' . $pqr->getDifferDates() }} Días</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            @endforeach
+                        </li>
+                    @endforeach                    
                     @endif
 
                     {{-- Boton para las opciones del usuario logueado --}}
@@ -163,7 +160,12 @@
                     </div>
                     
                     {{-- Contiene todos los menus de la izquierda --}}
-                    @include('layouts.admin.options')
+                    @if (Auth::user()->isAdmin())
+                        @include('layouts.admin.options')
+                    @else
+                        @include('layouts.official.options')
+                    @endif
+                    
 
                 </div>
 

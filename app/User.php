@@ -87,4 +87,20 @@ class User extends Authenticatable implements HasMedia
         return false;
     }
 
+    /**
+     * Saca el número de requests que tiene sin leer el usuario.
+     */
+    public function getUnreadRequests()
+    {
+        $unread = [];
+        $pqrs = $this->requests;
+        foreach($pqrs as $pqr)
+        {
+            if($pqr->state == 'pending')
+                array_push($unread, $pqr);
+        }
+
+        return $unread;
+    }
+
 }

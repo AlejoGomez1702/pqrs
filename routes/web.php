@@ -33,24 +33,7 @@ Route::resource('categories', 'CategoryController');
 // Rutas para el CRUD de peticiones (PQRS).
 Route::resource('requests', 'RequestController');
 
-Route::get('pruebitas', function(){
-    // $request = App\request::find(1);
-
-    $dependece = App\Dependence::find(1)->getLeader();
-
-    if($dependece != null)
-    {
-        echo var_dump($dependece);
-    }
-    else{
-        echo "ohohohooho" . "<br>";
-    }
-
-    
-
-    // foreach ($request->users as $user) 
-    // {
-    //     echo $user->names . "<br>";
-    // }
-});
+// Rutas para que el funcionario de respuesta a una PQRS.
+Route::get('giveanswer', 'RequestOfficialController@giveAnswer')->name('giveanswer');
+Route::post('reply', 'RequestOfficialController@reply')->name('reply');
 

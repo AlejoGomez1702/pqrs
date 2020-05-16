@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Carbon\Carbon;
 
 class Request extends Model implements HasMedia
 {
@@ -60,6 +61,15 @@ class Request extends Model implements HasMedia
         }
 
         return null;
+    }
+
+    public function getDifferDates()
+    {
+        $date_created = Carbon::parse($this->maximun_date);
+        $now_date = Carbon::now();
+
+        $diff = $date_created->diffInDays($now_date);
+        return $diff;
     }
 
 }

@@ -44,6 +44,9 @@
                     @if ($pqr->state == 'pending')
                         <td style="color: red;"> Pendiente </td>
                     @endif
+                    @if ($pqr->state == 'read')
+                        <td style="color: yellow;"> Leído </td>
+                    @endif
 
                     @if ($pqr->state == 'completed')
                         <td style="color: green;"> Completado </td>
@@ -60,10 +63,12 @@
                         <form action="{{ route('requests.destroy', $pqr->id) }}" method="post" class="size-field">
                             <a title="Ver PQRS" class="btn" href="requests/{{ $pqr->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             {{-- <a title="Modificar Solicitante" class="btn" href="requests/{{ $pqr->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a> --}}
-                            {{-- Boton de eliminar --}}                            
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button title="Eliminar PQRS" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            {{-- Boton de eliminar --}}     
+                            @if (Auth::user()->isAdmin())  
+                              {{ csrf_field() }}
+                              {{ method_field('DELETE') }}
+                              <button title="Eliminar PQRS" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>                              
+                            @endif                                                   
                         </form>                            
                     </td>
                   </tr>                    
@@ -76,7 +81,9 @@
                   @endif
             </tbody>
           </table>
+          @if (Auth::user()->isAdmin())  
           {{ $pqrs->links() }}
+          @endif
         </div>
         <!-- /.card-body -->
       </div>

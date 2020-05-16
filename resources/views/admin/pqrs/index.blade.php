@@ -58,12 +58,12 @@
                       
                     <td class="center-icons">
                         <form action="{{ route('requests.destroy', $pqr->id) }}" method="post" class="size-field">
-                            <a class="btn" href="requests/{{ $pqr->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                            <a title="Modificar Solicitante" class="btn" href="requests/{{ $pqr->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a title="Ver PQRS" class="btn" href="requests/{{ $pqr->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            {{-- <a title="Modificar Solicitante" class="btn" href="requests/{{ $pqr->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a> --}}
                             {{-- Boton de eliminar --}}                            
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button title="Eliminar Solicitante" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button title="Eliminar PQRS" type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </form>                            
                     </td>
                   </tr>                    

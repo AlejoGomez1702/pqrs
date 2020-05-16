@@ -50,12 +50,12 @@
                         <td> {{ $official->dependence->name }} </td>
                         <td class="center-icons">
                             <form action="{{ route('officials.destroy', $official->id) }}" method="post" class="size-field">
-                                <a class="btn" href="officials/{{ $official->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                <a class="btn" href="officials/{{ $official->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a class="btn" title="Ver Detalles" href="officials/{{ $official->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a class="btn" title="Editar Funcionario" href="officials/{{ $official->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 {{-- Boton de eliminar --}}                            
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button type="submit" title="Eliminar Funcionario" onclick="return confirm('Estas Seguro?')" class="btn" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                             </form>                            
                         </td>
                     </tr>                    

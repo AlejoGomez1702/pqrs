@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Request as Pqrs;
 use App\user;
 use App\Dependence;
+use App\Entity;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,8 @@ class HomeController extends Controller
     {
         $cant_pqrs = Pqrs::all()->count();
         $cant_officials = User::role('official')->count();
-        $cant_applicants = User::role('applicant')->count();
+        $cant_entities = Entity::all()->count();
+        $cant_applicants = User::role('applicant')->count() + $cant_entities;
         $cant_dependences = Dependence::all()->count();
 
         // PQRS pendientes y completadas.

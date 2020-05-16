@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOfficial;
 use Illuminate\Http\Request;
+use App\Dependence;
 use App\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -34,8 +35,8 @@ class OfficialController extends Controller
      */
     public function create()
     {
-        return view('admin.officials.create')
-                    ->with('type', 'create');
+        $dependences = Dependence::all();
+        return view('admin.officials.create', ['dependences' => $dependences]);
     }
 
     /**
@@ -46,11 +47,13 @@ class OfficialController extends Controller
      */
     public function store(StoreOfficial $request)
     {
-        $info = $request->except('photo');
+        $info = $request->all();
         $info['password'] = bcrypt($request->password);
         $official = User::create($info);
+        $official->dependence_id = $request->dependence_id;
+        $official->save();
         $official->assignRole('official');
-        $official->addMedia($request->photo)->toMediaCollection();
+        // $official->addMedia($request->photo)->toMediaCollection();
 
         if($official) 
         {
@@ -84,8 +87,9 @@ class OfficialController extends Controller
     public function edit($id)
     {
         $official = User::role('official')->findOrFail($id);
-        return view('admin.officials.edit')
-                    ->with('official', $official);
+        $dependences = Dependence::all();
+
+        return view('admin.officials.edit', ['official' => $official, 'dependences' => $dependences]);
     }
 
     /**
@@ -97,13 +101,19 @@ class OfficialController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //return $request->all();
         $official = User::role('official')->findOrFail($id);
-        if($request->photo)
+        $check = $official->update($request->except(['password', 'password_confirmation']));
+        if($request->password)
         {
-            $official->addMedia($request->photo)->toMediaCollection();
+            if($request->password == $request->password_confirmation)
+            {
+                $encrypt = bcrypt($request->password);
+                $official->password = $encrypt;
+                $official->save();
+            }
         }
-
-        $check = $official->update($request->except('photo'));
+        
         if($check)
         {
             Alert::success('Funcionario Actualizado Correctamente!', 

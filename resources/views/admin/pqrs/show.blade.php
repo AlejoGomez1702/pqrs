@@ -12,7 +12,7 @@
                 <img src="/storage/default-user.png" alt="">
             @endif --}}
             <div class="card-header alert alert-dark">
-                Información detallada de la PQRS
+                <h5>Información detallada de la PQRS</h5>
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">

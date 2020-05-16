@@ -72,4 +72,19 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany('App\Request');
     }
 
+    /**
+     * Me dice si un usuario es administrador o no.
+     */
+    public function isAdmin()
+    {
+        $roles = $this->getRoleNames();
+        foreach($roles as $role)
+        {
+            if($role == 'administrator')
+                return true;
+        }
+        
+        return false;
+    }
+
 }

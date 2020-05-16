@@ -23,21 +23,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/adminlte/adminlte.min.css') }}" rel="stylesheet" >
     
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"> --}}
-
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/a950d22064.js" crossorigin="anonymous"></script>
 
-    {{-- <script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script> --}}
-
     <!-- JQuery -->
     <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"> --}}
-
+    
     {{-- Chart JS --}}
     <script src="{{ asset('js/chart-js.min.js') }}"></script>
 
@@ -73,8 +64,12 @@
                 </div>
                 </form> --}}
 
+
+                {{-- ********************************************************* --}}
                 <!-- Right navbar links -->
+                
                 <ul class="navbar-nav ml-auto">
+                    @if (!Auth::user()->isAdmin())
                 
                     <!-- Notifications Dropdown Menu -->
                     <li class="nav-item dropdown">
@@ -103,6 +98,8 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                         </div>
                     </li>
+                    @endif
+
                     {{-- Boton para las opciones del usuario logueado --}}
                     <li class="nav-item mr-5">
                         <div class="dropdown show">                        
@@ -129,7 +126,13 @@
                         {{-- <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
                             class="fas fa-th-large"></i></a> --}}
                     </li>
+                    
                 </ul>
+                
+                
+                {{-- ********************************************************* --}}
+
+
             </nav>
             <!-- /.navbar -->
 
@@ -147,11 +150,11 @@
                     <!--Foto y nombre de usuario logueado-->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            @if (count(Auth::user()->getMedia()) > 0)
+                            {{-- @if (count(Auth::user()->getMedia()) > 0)
                                 <img src="{{ Auth::user()->getMedia()[0]->getUrl() }}" class="img-circle elevation-2" alt="User Image">
-                            @else
-                                <img src="/storage/default-user.png" class="img-circle elevation-2" alt="User Image">
-                            @endif
+                            @else --}}
+                            <img src="/storage/default-user.png" class="img-circle elevation-2" alt="User Image">
+                            {{-- @endif --}}
                             {{-- <img src="{{ asset('img/avatar2.png') }}" class="img-circle elevation-2" alt="User Image"> --}}
                         </div>
                         <div class="info">
@@ -213,20 +216,8 @@
 
         @stack('custom-scripts')
 
-        <!-- JQuery -->
-        {{-- <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script> --}}
-
         <!-- AdminLTE -->
         <script src="{{ asset('js/adminlte/adminlte.min.js') }}"></script>
-
-        {{-- Chart JS --}}
-        {{-- <script src="{{ asset('js/chart-js.min.js') }}"></script> --}}
-
-        {{-- Dashboard2 AdminLTE 3.0 --}}
-        {{-- <script src="{{ asset('js/adminlte/dashboard2.js') }}"></script> --}}
-
-        {{-- Bootbox -- Utilizado para los dialogos modales --}}
-        {{-- <script src="{{ asset('js/bootbox.all.min.js') }}"></script> --}}
 
         {{-- Sweet Alert --}}
         @include('sweetalert::alert')
@@ -235,10 +226,5 @@
     {{-- @yield('table-script') --}}
 
 </body>
-
-<!-- JQuery -->
-{{-- <script src="{{ asset('js/adminlte/jquery.min.js') }}"></script> --}}
-{{-- <script type="text/javascript" src="{{ asset ('js/adminlte/tables/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset ('js/adminlte/tables/dataTables.bootstrap4.js') }}"></script> --}}
 
 </html>

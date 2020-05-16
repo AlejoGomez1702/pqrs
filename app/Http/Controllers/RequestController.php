@@ -146,6 +146,14 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $request = Pqrs::findOrFail($id);
+        $check = $request->delete();
+        if($check)
+        {
+            Alert::error('PQRS Eliminada Correctamente!', 
+                            'Radicado #: ' .  $request->id);
+        }
+
+        return redirect()->route('requests.index');
     }
 }

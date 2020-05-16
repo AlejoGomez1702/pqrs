@@ -29,7 +29,7 @@ class StoreOfficial extends FormRequest
             'surnames' => 'required|string|min:4|max:120',
             'email' => 'email|required|unique:users',
             'password' => 'required|min:6|confirmed',
-            'photo' => 'required'
+            'dependence_id' => 'required'
         ];
     }
 }

@@ -55,11 +55,11 @@
 <script>
 
     var donutData = {
-      labels: ['Pendientes', 'Completados'],
+      labels: ['Pendientes', 'Completados', 'En Espera', 'Rechazados'],
       datasets: [
         {
-          data: [{{ $pendings }},{{ $completes }}],
-          backgroundColor : ['#f56954', '#00a65a'],
+          data: [{{ $pendings }},{{ $completes }}, {{ $waits }}, {{ $rejectes }}],
+          backgroundColor : ['#f56954', '#00a65a', '#DFEE26', '#ED10C8'],
         }
       ]
     }

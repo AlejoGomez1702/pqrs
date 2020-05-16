@@ -15,7 +15,17 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('description');
             $table->timestamps();
+
+            // Una respuesta pertenece a una pqrs.
+            $table->unsignedBigInteger('request_id');
+
+            $table->foreign('request_id')
+                        ->references('id')->on('requests')
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
+
         });
     }
 

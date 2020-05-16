@@ -32,7 +32,7 @@
                   <th>Dependencia</th>
                   <th>Funcionario</th>
                   <th>Fecha creación</th>
-                  <th>Fecha respuesta</th>
+                  <th>Fecha máxima</th>
                   <th>Acciones</th>
               </tr>
             </thead>
@@ -41,13 +41,23 @@
                   @foreach ($pqrs as $pqr)
                   <tr class="" >
                     <td> {{ $pqr->id }} </td>
+                    {{-- Pendiente --}}
                     @if ($pqr->state == 'pending')
                         <td style="color: red;"> Pendiente </td>
                     @endif
+                    {{-- Leido --}}
                     @if ($pqr->state == 'read')
-                        <td style="color: yellow;"> Leído </td>
+                        <td style="color: blue;"> Leído </td>
                     @endif
-
+                    {{-- En espera --}}
+                    @if ($pqr->state == 'wait')
+                        <td style="color: yellow;">En Espera</td>
+                    @endif
+                    {{-- Rechazado --}}
+                    @if ($pqr->state == 'rejected')
+                        <td style="color: #ED10C8;">Rechazado</td>
+                    @endif
+                    {{-- Completado --}}
                     @if ($pqr->state == 'completed')
                         <td style="color: green;"> Completado </td>
                     @endif

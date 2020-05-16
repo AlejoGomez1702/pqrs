@@ -25,6 +25,8 @@
                         @csrf --}}
                         {{-- </form> --}}
                         {!! Form::open(['url' => '/reply', 'files' => true]) !!}  
+
+                        <input type="hidden" name="pqr_id" value="{{ $pqr->id }}">
                                                 
                         {{-- Respuesta --}}
                         <div class="form-group">

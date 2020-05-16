@@ -120,8 +120,11 @@ class RequestController extends Controller
         $pqr = Pqrs::findOrFail($id);
         if(!Auth::user()->isAdmin())
         {
-            $pqr->state = 'read';
-            $pqr->save();
+            if(!$pqr->state == 'wait' && !$pqr->state == 'completed')
+            {
+                $pqr->state = 'read';
+                $pqr->save();
+            }            
         }            
 
         return view('admin.pqrs.show', ['pqr' => $pqr]);

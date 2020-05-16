@@ -36,6 +36,15 @@ class Request extends Model implements HasMedia
     }
 
     /**
+     * Una PQRS puede tener muchas respuestas
+     * por parte de los funcionarios.
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
+
+    /**
      * Me retorna el funcionario destino de la pqrs.
      */
     public function getOfficial()

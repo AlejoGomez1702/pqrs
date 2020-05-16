@@ -25,7 +25,11 @@
                         <li class="list-group-item">Estado: <span style="color: green;">Completado</span></li>
                     @endif
                     @if ($pqr->state == 'read')
-                        <li class="list-group-item">Estado: <span style="color: yellow;">Leído</span></li>
+                        <li class="list-group-item">Estado: <span style="color: blue;">Leído</span></li>
+                    @endif
+                    {{-- Rechazado --}}
+                    @if ($pqr->state == 'rejected')
+                        <li class="list-group-item">Estado: <span style="color: #ED10C8;;">Rechazado</span></li>
                     @endif
 
                     <li class="list-group-item">Dependencia: {{ $pqr->dependence->name }}</li>
@@ -38,11 +42,29 @@
                     <li class="list-group-item"><a href="{{ route('giveanswer', ['pqr' => $pqr->id]) }}"><button type="button" class="btn btn-primary">Responder</button></a></li>
                     @endif
                     <ul class="list-group list-group-flush">
-                        Documentos de la PQRS:
+                        <h3>Documentos de la PQRS:</h3>
                         @foreach ($pqr->getMedia() as $doc)
                             <ol class="list-group-item"><a href="{{ $doc->getFullUrl() }}">{{ $doc->name }}</a></ol>
                         @endforeach                        
                     </ul>
+                    {{-- Listado de respuestas que el usuario a dado --}}
+                    @if (count($pqr->answers) > 0) 
+                    <div class="dropdown-divider"></div>
+                    <ul class="list-group list-group-flush">
+                        <h3>Respuestas de la PQRS:</h3>
+                        @foreach ($pqr->answers as $answer)
+                            <ol class="list-group-item">{{ $answer->description }}</ol>
+                            @foreach ($answer->getMedia() as $doc)
+                                <ol class="list-group-item"><a href="{{ $doc->getFullUrl() }}">{{ $doc->name }}</a></ol>
+                            @endforeach
+                            @if (Auth::user()->isAdmin())  
+                                <li class="list-group-item"><a href="{{ route('validatepqrs', ['pqr' => $pqr->id, 'yes' => true]) }}"><button type="button" class="btn btn-primary">Aprobar</button></a></li>
+                                <li class="list-group-item"><a href="{{ route('validatepqrs', ['pqr' => $pqr->id, 'yes' => false]) }}"><button type="button" class="btn btn-danger">Rechazar</button></a></li>
+                            @endif  
+                            <div class="dropdown-divider"></div>
+                        @endforeach                        
+                    </ul>
+                    @endif
 
                 </ul>
             </div>            

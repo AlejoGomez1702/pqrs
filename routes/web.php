@@ -35,5 +35,7 @@ Route::resource('requests', 'RequestController');
 
 // Rutas para que el funcionario de respuesta a una PQRS.
 Route::get('giveanswer', 'RequestOfficialController@giveAnswer')->name('giveanswer');
+Route::get('validatepqrs', 'RequestOfficialController@validatePqrs')->name('validatepqrs');
 Route::post('reply', 'RequestOfficialController@reply')->name('reply');
+
 

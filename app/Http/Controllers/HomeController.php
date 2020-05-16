@@ -39,7 +39,11 @@ class HomeController extends Controller
             // PQRS pendientes y completadas.
             $pendings = Pqrs::where('state', 'pending')->count();
             $pendings = $pendings + Pqrs::where('state', 'read')->count();
-            $completes = Pqrs::where('state', 'complete')->count();
+            $completes = Pqrs::where('state', 'completed')->count();
+
+            // PQRS en espera y rechazadas.
+            $waits = Pqrs::where('state', 'wait')->count();
+            $rejectes = Pqrs::where('state', 'rejected')->count();
 
             return view('home', [
                 'cant_pqrs' => $cant_pqrs,
@@ -47,7 +51,9 @@ class HomeController extends Controller
                 'cant_dependences' => $cant_dependences,
                 'cant_applicants' => $cant_applicants,
                 'pendings' => $pendings,
-                'completes' => $completes
+                'completes' => $completes,
+                'waits' => $waits,
+                'rejectes' => $rejectes
             ]);
         }
         else
@@ -59,6 +65,11 @@ class HomeController extends Controller
             $pendings = 0;
             $completes = 0;
 
+            // PQRS en espera y rechazadas.
+            $waits = 0;
+            $rejectes = 0;
+
+
             foreach($pqrs as $pqr)
             {
                 if($pqr->state == 'pending' || $pqr->state == 'read')
@@ -69,12 +80,22 @@ class HomeController extends Controller
                 {
                     $completes ++;
                 }
+                else if($pqr->state == 'wait')
+                {
+                    $waits ++;
+                }
+                else if($pqr->state == 'rejected')
+                {
+                    $rejectes ++;
+                }
             }
 
             return view('home', [
                 'cant_pqrs' => $cant_pqrs,
                 'pendings' => $pendings,
-                'completes' => $completes
+                'completes' => $completes,
+                'waits' => $waits,
+                'rejectes' => $rejectes
             ]);
 
         }

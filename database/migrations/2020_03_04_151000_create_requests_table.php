@@ -16,7 +16,7 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('description');
-            $table->enum('state', ['registered', 'assigned', 'pending', 'read', 'completed']);
+            $table->enum('state', ['pending', 'read', 'wait', 'rejected', 'completed']);
             $table->integer('number_of_pages');
             $table->date('maximun_date');
             $table->timestamps();

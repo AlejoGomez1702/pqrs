@@ -70,7 +70,7 @@
                 
                 <ul class="navbar-nav ml-auto">
                     @if (!Auth::user()->isAdmin())                
-                    @foreach (Auth::user()->requests as $pqr)
+                    {{-- @foreach (Auth::user()->requests as $pqr) --}}
                         <!-- Notifications Dropdown Menu -->
                         <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -94,7 +94,7 @@
                             <div class="dropdown-divider"></div>
                             @endforeach
                         </li>
-                    @endforeach                    
+                    {{-- @endforeach                     --}}
                     @endif
 
                     {{-- Boton para las opciones del usuario logueado --}}
